@@ -5,6 +5,8 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
+import android.widget.ImageView;
+import android.widget.TextView;
 
 import com.google.android.gms.auth.api.signin.GoogleSignIn;
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
@@ -49,11 +51,12 @@ public class ActivityLogin extends AppCompatActivity {
     private void updateUI(GoogleSignInAccount account) {
         if(account != null) {
             Intent intent = new Intent(ActivityLogin.this, ActivityMain.class);
+            intent.putExtra(Intent.EXTRA_USER, account.getDisplayName());
+            intent.putExtra(Intent.EXTRA_EMAIL, account.getEmail());
+            intent.putExtra(Intent.EXTRA_ORIGINATING_URI, account.getPhotoUrl().toString());
             startActivity(intent);
-            finish();
         }
     }
-
 
     private void signIn() {
         Intent signInIntent = mGoogleSignInClient.getSignInIntent();
