@@ -1,10 +1,11 @@
 package com.iteso.is699367.halp_two_point_one;
 
 import android.content.Intent;
-import android.net.Uri;
-import android.os.PersistableBundle;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.graphics.drawable.Drawable;
+import android.os.AsyncTask;
 import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
@@ -15,17 +16,17 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toolbar;
 
-import com.google.android.gms.auth.api.signin.GoogleSignIn;
-import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
-
-import java.net.URI;
+import java.io.IOException;
+import java.io.InputStream;
+import java.net.MalformedURLException;
+import java.net.URL;
 
 public class ActivityMain extends AppCompatActivity  implements NavigationView.OnNavigationItemSelectedListener{
     private DrawerLayout drawer;
     TextView username, userEmail;
     ImageView userPic;
+    public Bitmap bitmap;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,8 +45,6 @@ public class ActivityMain extends AppCompatActivity  implements NavigationView.O
         userPic = header.findViewById(R.id.nav_header_user_pic);
         username.setText(getIntent().getStringExtra(Intent.EXTRA_USER));
         userEmail.setText(getIntent().getStringExtra(Intent.EXTRA_EMAIL));
-        userPic.setImageURI(Uri.parse(getIntent().getStringExtra(Intent.EXTRA_ORIGINATING_URI)));
-        userPic.
 
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(this, drawer, toolbar,
                 R.string.navigation_drawer_open,R.string.navigation_drawer_close);
@@ -94,6 +93,16 @@ public class ActivityMain extends AppCompatActivity  implements NavigationView.O
         drawer.closeDrawer(GravityCompat.START);
 
         return true;
+    }
+
+    public static Drawable LoadImageFromWebOperations(String url) {
+        try {
+            InputStream is = (InputStream) new URL(url).getContent();
+            Drawable d = Drawable.createFromStream(is, "Google");
+            return d;
+        } catch (Exception e) {
+            return null;
+        }
     }
 
     @Override

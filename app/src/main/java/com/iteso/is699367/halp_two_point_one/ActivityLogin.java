@@ -22,8 +22,6 @@ public class ActivityLogin extends AppCompatActivity {
     private final String TAG = "ActivityLogin";
     SignInButton signInButton;
     GoogleSignInClient mGoogleSignInClient;
-    TextView username, userEmail;
-    ImageView userPic;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
