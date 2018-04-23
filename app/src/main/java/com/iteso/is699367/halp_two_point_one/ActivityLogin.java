@@ -44,6 +44,7 @@ public class ActivityLogin extends AppCompatActivity {
     protected void onStart() {
         super.onStart();
         GoogleSignInAccount account = GoogleSignIn.getLastSignedInAccount(this);
+        updateUI(account);
     }
 
     private void updateUI(GoogleSignInAccount account) {

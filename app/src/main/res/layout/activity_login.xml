@@ -10,7 +10,7 @@
         android:id="@+id/logo"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:src="@drawable/Capture"
+        android:src="@drawable/capture"
         android:layout_centerHorizontal="true"
         android:paddingTop="60dp"/>
 
