@@ -12,7 +12,7 @@
         android:layout_height="wrap_content"
         android:src="@drawable/capture"
         android:layout_centerHorizontal="true"
-        android:paddingTop="60dp"/>
+        android:paddingTop="25dp" />
 
     <com.google.android.gms.common.SignInButton
         android:layout_below="@id/logo"
@@ -20,7 +20,7 @@
         android:layout_centerVertical="true"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:paddingTop="100dp"
+        android:paddingTop="25dp"
         />
 
 </RelativeLayout>
