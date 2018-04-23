@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
+    <ListPreference
+        android:title="@string/pref_log_out"
+        android:summary="@string/pref_log_summ"
+        />
+    <PreferenceScreen
+        android:key="button_voicemail_category_key"
+        android:title="@string/pref_language"
+        android:summary="@string/pref_lang_summ"
+        android:persistent="false">
+        <CheckBoxPreference
+            android:key="button_voicemail_provider_key"
+            android:title="@string/pref_lang_eng"
+            android:checked="true"/>
+        <CheckBoxPreference
+            android:key="button_voicemail_ringtone_key"
+            android:title="@string/pref_lang_span"
+            android:ringtoneType="notification"
+            android:checked="false"/>
+    </PreferenceScreen>
+
+</PreferenceScreen>
