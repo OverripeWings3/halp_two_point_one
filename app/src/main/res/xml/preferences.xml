@@ -1,23 +1,30 @@
 <?xml version="1.0" encoding="utf-8"?>
 <PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
-    <ListPreference
+    <Preference
         android:title="@string/pref_log_out"
         android:summary="@string/pref_log_summ"
         />
     <PreferenceScreen
-        android:key="button_voicemail_category_key"
+        android:key="button_change_language_key"
         android:title="@string/pref_language"
         android:summary="@string/pref_lang_summ"
         android:persistent="false">
-        <CheckBoxPreference
-            android:key="button_voicemail_provider_key"
-            android:title="@string/pref_lang_eng"
-            android:checked="true"/>
-        <CheckBoxPreference
-            android:key="button_voicemail_ringtone_key"
+        <Preference
+            android:key="button_english_lang_key"
+            android:title="@string/pref_lang_eng" />
+        <Preference
+            android:key="button_spanish_lang_key"
             android:title="@string/pref_lang_span"
-            android:ringtoneType="notification"
-            android:checked="false"/>
+            android:defaultValue="false"
+            />
+    </PreferenceScreen>
+    <PreferenceScreen
+        android:key=""
+        android:title="@string/pref_change_background_color"
+        android:summary="@string/pref_change_background_color_summ"
+        >
+        <Preference
+            android:key="button_"/>
     </PreferenceScreen>
 
 </PreferenceScreen>

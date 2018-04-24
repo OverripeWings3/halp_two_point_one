@@ -12,6 +12,8 @@ import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.preference.PreferenceFragmentCompat;
+import android.support.v7.preference.PreferenceScreen;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
@@ -22,7 +24,9 @@ import java.io.InputStream;
 import java.net.MalformedURLException;
 import java.net.URL;
 
-public class ActivityMain extends AppCompatActivity  implements NavigationView.OnNavigationItemSelectedListener{
+public class ActivityMain extends AppCompatActivity  implements
+        NavigationView.OnNavigationItemSelectedListener,
+        PreferenceFragmentCompat.OnPreferenceStartScreenCallback{
     private DrawerLayout drawer;
     TextView username, userEmail;
     ImageView userPic;
@@ -76,7 +80,7 @@ public class ActivityMain extends AppCompatActivity  implements NavigationView.O
                 getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
                         new AgendaFragment()).commit();
                 break;
-            case R.id.nav_assigments:
+            case R.id.nav_assignments:
                 getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
                         new AssigmentFragment()).commit();
                 break;
@@ -112,5 +116,10 @@ public class ActivityMain extends AppCompatActivity  implements NavigationView.O
         } else {
             super.onBackPressed();
         }
+    }
+
+    @Override
+    public boolean onPreferenceStartScreen(PreferenceFragmentCompat caller, PreferenceScreen pref) {
+        return false;
     }
 }
