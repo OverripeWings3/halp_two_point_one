@@ -30,12 +30,13 @@ import com.google.android.gms.tasks.Task;
 public class SettingsFragment extends PreferenceFragmentCompat {
 
     GoogleSignInClient mGoogleSignInClient;
-    GoogleApiClient mGoogleApiClient;
     android.support.v7.preference.Preference preferenceLogOut =
             findPreference("button_logout");
 
     @Override
     public void onCreatePreferences(Bundle savedInstanceState, String rootKey) {
+        GoogleSignInOptions gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN).build();
+        mGoogleSignInClient = GoogleSignIn.getClient(getActivity(), gso);
         setPreferencesFromResource(R.xml.preferences, rootKey);
         android.support.v7.preference.Preference preferenceLogOut =
                 findPreference("button_logout");
@@ -43,34 +44,21 @@ public class SettingsFragment extends PreferenceFragmentCompat {
                 new android.support.v7.preference.Preference.OnPreferenceClickListener() {
             @Override
             public boolean onPreferenceClick(android.support.v7.preference.Preference preference) {
-
-                Auth.GoogleSignInApi.signOut(mGoogleApiClient).setResultCallback(
-                        new ResultCallback<Status>() {
-                            @Override
-                            public void onResult(Status status) {
-                                // ...
-                                Toast.makeText(getActivity(),"Logged Out",Toast.LENGTH_SHORT).show();
-                                Intent i=new Intent(getActivity(),ActivityLogin.class);
-                                startActivity(i);
-                                getActivity().finish();
-                            }
-                        });
+                    signOut();
                 return false;
             }
         });
     }
 
-    @Override
-    public void onStart() {
-        GoogleSignInOptions gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
-                .requestEmail()
-                .build();
-        mGoogleApiClient = new GoogleApiClient.Builder(getActivity())
-                .addApi(Auth.GOOGLE_SIGN_IN_API, gso)
-                .build();
-        mGoogleApiClient.connect();
-        super.onStart();
+    private void signOut() {
+        mGoogleSignInClient.signOut()
+                .addOnCompleteListener(getActivity(), new OnCompleteListener<Void>() {
+            @Override
+            public void onComplete(@NonNull Task<Void> task) {
+                Intent intent = new Intent(getActivity(), ActivityLogin.class);
+                startActivity(intent);
+                getActivity().finish();
+            }
+        });
     }
-
-
 }
