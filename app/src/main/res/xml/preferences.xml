@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
     <Preference
+        android:key="button_logout"
         android:title="@string/pref_log_out"
         android:summary="@string/pref_log_summ"
         />
@@ -19,7 +20,7 @@
             />
     </PreferenceScreen>
     <PreferenceScreen
-        android:key=""
+        android:key="button_change_background_color"
         android:title="@string/pref_change_background_color"
         android:summary="@string/pref_change_background_color_summ"
         >
