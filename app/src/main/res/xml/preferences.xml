@@ -1,31 +1,29 @@
 <?xml version="1.0" encoding="utf-8"?>
-<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
-    <Preference
+<PreferenceScreen
+    android:key="rootKey"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+    <PreferenceCategory android:title="Log Out">
+        <Preference
         android:key="button_logout"
         android:title="@string/pref_log_out"
         android:summary="@string/pref_log_summ"
         />
-    <PreferenceScreen
-        android:key="button_change_language_key"
-        android:title="@string/pref_language"
-        android:summary="@string/pref_lang_summ"
-        android:persistent="false">
-        <Preference
-            android:key="button_english_lang_key"
-            android:title="@string/pref_lang_eng" />
-        <Preference
-            android:key="button_spanish_lang_key"
-            android:title="@string/pref_lang_span"
-            android:defaultValue="false"
-            />
-    </PreferenceScreen>
-    <PreferenceScreen
-        android:key="button_change_background_color"
-        android:title="@string/pref_change_background_color"
-        android:summary="@string/pref_change_background_color_summ"
-        >
-        <Preference
-            android:key="button_"/>
-    </PreferenceScreen>
+    </PreferenceCategory>
+    <PreferenceCategory
+        android:title="Change App Style">
+        <PreferenceScreen
+            android:key="button_change_background_color"
+            android:title="@string/pref_change_style"
+            android:summary="@string/pref_change_style_summ">
+            <Preference
+                android:key="button_change_color_inv"
+                android:title="@string/pref_color_norm"
+                />
+            <Preference
+                android:key="button_change_color_inv"
+                android:title="@string/pref_color_inv"
+                />
+        </PreferenceScreen>
+    </PreferenceCategory>
 
 </PreferenceScreen>

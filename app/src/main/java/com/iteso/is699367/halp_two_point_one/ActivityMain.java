@@ -1,9 +1,11 @@
 package com.iteso.is699367.halp_two_point_one;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.drawable.Drawable;
+import android.net.Uri;
 import android.os.AsyncTask;
 import android.support.annotation.NonNull;
 import android.support.design.widget.NavigationView;
@@ -19,20 +21,32 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.google.android.gms.auth.api.signin.GoogleSignIn;
+import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
 import com.google.android.gms.common.api.GoogleApiClient;
+import com.iteso.is699367.halp_two_point_one.Constants.Constants;
+import com.squareup.picasso.Picasso;
 
 import java.io.IOException;
 import java.io.InputStream;
 import java.net.MalformedURLException;
+import java.net.URI;
 import java.net.URL;
 
 public class ActivityMain extends AppCompatActivity  implements
         NavigationView.OnNavigationItemSelectedListener,
         PreferenceFragmentCompat.OnPreferenceStartScreenCallback{
     private DrawerLayout drawer;
+
     TextView username, userEmail;
     ImageView userPic;
-    public Bitmap bitmap;
+
+    String personName;
+    String personGivenName;
+    String personFamilyName;
+    String personEmail;
+    String personId;
+    Uri personPhoto;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,6 +56,14 @@ public class ActivityMain extends AppCompatActivity  implements
         android.support.v7.widget.Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
+        if(loadPreferences() == "Norm") {
+            getApplication().setTheme(R.style.AppTheme);
+        }
+        else {
+            getApplication().setTheme(R.style.AppThemeInverse);
+        }
+
+
         drawer = findViewById(R.id.drawer_layout);
         NavigationView navigationView = findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
@@ -49,8 +71,12 @@ public class ActivityMain extends AppCompatActivity  implements
         username = header.findViewById(R.id.nav_header_username);
         userEmail = header.findViewById(R.id.nav_header_email);
         userPic = header.findViewById(R.id.nav_header_user_pic);
-        username.setText(getIntent().getStringExtra(Intent.EXTRA_USER));
-        userEmail.setText(getIntent().getStringExtra(Intent.EXTRA_EMAIL));
+
+        getUserData();
+
+        username.setText(personName);
+        userEmail.setText(personEmail);
+        Picasso.get().load(personPhoto).into(userPic);
 
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(this, drawer, toolbar,
                 R.string.navigation_drawer_open,R.string.navigation_drawer_close);
@@ -70,9 +96,6 @@ public class ActivityMain extends AppCompatActivity  implements
     @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
 
-        //userEmail.setText(getIntent().getStringExtra(Intent.EXTRA_EMAIL));
-        //userPic.setImageURI(Uri.parse(getIntent().getStringExtra(Intent.EXTRA_ORIGINATING_URI)));
-
         switch (item.getItemId()){
             case R.id.nav_home:
                 getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
@@ -91,24 +114,15 @@ public class ActivityMain extends AppCompatActivity  implements
                         new FlashcardsFragment()).commit();
                 break;
             case R.id.nav_settings:
-                getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
-                        new SettingsFragment()).commit();
+                Intent intent = new Intent(ActivityMain.this, ActivitySettings.class);
+                startActivity(intent);
+                this.setTheme(R.style.AppThemeInverse);
                 break;
         }
 
         drawer.closeDrawer(GravityCompat.START);
 
         return true;
-    }
-
-    public static Drawable LoadImageFromWebOperations(String url) {
-        try {
-            InputStream is = (InputStream) new URL(url).getContent();
-            Drawable d = Drawable.createFromStream(is, "Google");
-            return d;
-        } catch (Exception e) {
-            return null;
-        }
     }
 
     @Override
@@ -123,5 +137,23 @@ public class ActivityMain extends AppCompatActivity  implements
     @Override
     public boolean onPreferenceStartScreen(PreferenceFragmentCompat caller, PreferenceScreen pref) {
         return false;
+    }
+
+    public void getUserData() {
+        GoogleSignInAccount account = GoogleSignIn.getLastSignedInAccount(getApplicationContext());
+        if(account != null) {
+            personName = account.getDisplayName();
+            personGivenName = account.getGivenName();
+            personFamilyName = account.getFamilyName();
+            personEmail = account.getEmail();
+            personId = account.getId();
+            personPhoto = account.getPhotoUrl();
+        }
+    }
+
+    public String loadPreferences() {
+        SharedPreferences sharedPreferences = getSharedPreferences(Constants.USER_PREFERENCES, MODE_PRIVATE);
+        String appTheme = sharedPreferences.getString(Constants.KEY_CHANGE_COLOR, null);
+        return appTheme;
     }
 }
