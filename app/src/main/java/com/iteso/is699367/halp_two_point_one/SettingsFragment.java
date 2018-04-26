@@ -25,12 +25,23 @@ import com.iteso.is699367.halp_two_point_one.Constants.Constants;
 public class SettingsFragment extends PreferenceFragment{
 
     private Preference prefListener;
+    public static boolean logOut;
 
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         addPreferencesFromResource(R.xml.preferences);
+        prefListener = findPreference(Constants.KEY_LOG_OUT);
+        prefListener.setOnPreferenceClickListener(new Preference.OnPreferenceClickListener() {
+            @Override
+            public boolean onPreferenceClick(Preference preference) {
+                if(preference.getKey().equals(Constants.KEY_LOG_OUT)) {
+                    signOut();
+                }
+                return false;
+            }
+        });
     }
 
     private void signOut() {
@@ -41,10 +52,8 @@ public class SettingsFragment extends PreferenceFragment{
             @Override
             public void onComplete(@NonNull Task<Void> task) {
                 Intent intent = new Intent(getActivity(), ActivityLogin.class);
-                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK
-                        | Intent.FLAG_ACTIVITY_NO_HISTORY);
+                intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
                 startActivity(intent);
-                //getActivity().
             }
         });
     }

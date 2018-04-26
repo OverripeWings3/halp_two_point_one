@@ -40,22 +40,6 @@ public class ActivitySettings extends PreferenceActivity
 
     }
 
-    private void signOut() {
-        GoogleSignInOptions gso = new GoogleSignInOptions.Builder(GoogleSignInOptions
-                .DEFAULT_SIGN_IN).build();
-        GoogleSignInClient mGoogleSignInClient = GoogleSignIn.getClient(getApplication(), gso);
-        mGoogleSignInClient.signOut().addOnCompleteListener(new OnCompleteListener<Void>() {
-            @Override
-            public void onComplete(@NonNull Task<Void> task) {
-                Intent intent = new Intent(ActivitySettings.this, ActivityLogin.class);
-                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK
-                        | Intent.FLAG_ACTIVITY_NO_HISTORY);
-                startActivity(intent);
-                //getActivity().
-            }
-        });
-    }
-
     @Override
     public void onBackPressed() {
         super.onBackPressed();
