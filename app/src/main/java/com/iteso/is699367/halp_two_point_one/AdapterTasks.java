@@ -57,7 +57,7 @@ public class AdapterTasks extends RecyclerView.Adapter<AdapterTasks.ViewHolder> 
         holder.mClass.setText(tasks.get(holder.getAdapterPosition()).getClas().getName());
 
 
-        switch(tasks.get(holder.getAdapterPosition()).getDone()){
+        /*switch(tasks.get(holder.getAdapterPosition()).getDone()){
             case 0:
                 holder.mImage.setImageResource(R.drawable.ic_check_box_outline_blank); break;
             case 1:
@@ -65,7 +65,7 @@ public class AdapterTasks extends RecyclerView.Adapter<AdapterTasks.ViewHolder> 
 
         }
         Bitmap bitmap = ((BitmapDrawable)holder.mImage.getDrawable()).getBitmap();
-        holder.mImage.setImageBitmap(bitmap);
+        holder.mImage.setImageBitmap(bitmap);*/
 
 
 

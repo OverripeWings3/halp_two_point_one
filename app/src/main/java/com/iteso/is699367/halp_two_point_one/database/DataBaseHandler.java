@@ -49,9 +49,9 @@ public class DataBaseHandler extends SQLiteOpenHelper {
         String CREATE_TASKS_TABLE = "CREATE TABLE " + TABLE_TASKS + "("
                 + KEY_TASKS_ID + " INTEGER PRIMARY KEY,"
                 + KEY_TASKS_NAME + " TEXT,"
-                + KEY_TASKS_CLASS + "INTEGER,"
-                + KEY_TASKS_DUEDAE + "TEXT,"
-                + KEY_TASKS_DONE + "INTEGER)";
+                + KEY_TASKS_CLASS + " INTEGER,"
+                + KEY_TASKS_DUEDAE + " TEXT,"
+                + KEY_TASKS_DONE + " INTEGER)";
         db.execSQL(CREATE_TASKS_TABLE);
 
         String CREATE_CLASSES_TABLE = "CREATE TABLE " + TABLE_CLASSES + "("
@@ -71,7 +71,11 @@ public class DataBaseHandler extends SQLiteOpenHelper {
         db.execSQL("INSERT INTO " + TABLE_CLASSES + " (" + KEY_CLASSES_ID + "," + KEY_CLASSES_NAME + ") VALUES (3, 'History')");
         db.execSQL("INSERT INTO " + TABLE_CLASSES + " (" + KEY_CLASSES_ID + "," + KEY_CLASSES_NAME + ") VALUES (4, 'Spanish')");
         db.execSQL("INSERT INTO " + TABLE_CLASSES + " (" + KEY_CLASSES_ID + "," + KEY_CLASSES_NAME + ") VALUES (5, 'Social Studies')");
-        db.execSQL("INSERT INTO " + TABLE_TASKS + " (" + KEY_TASKS_ID + "," + KEY_TASKS_NAME  + "," + KEY_TASKS_CLASS  + "," + KEY_TASKS_DUEDAE  + "," + KEY_TASKS_DONE + ") VALUES (1, 'HomeWork 1', 1, '26/05/18', 0)");
+        db.execSQL("INSERT INTO " + TABLE_TASKS + " (" + KEY_TASKS_ID + "," + KEY_TASKS_NAME  + "," + KEY_TASKS_CLASS  + "," + KEY_TASKS_DUEDAE  + "," + KEY_TASKS_DONE + ") VALUES (1, 'HomeWork 1', 1, 'TODAY', 1)");
+        db.execSQL("INSERT INTO " + TABLE_TASKS + " (" + KEY_TASKS_ID + "," + KEY_TASKS_NAME  + "," + KEY_TASKS_CLASS  + "," + KEY_TASKS_DUEDAE  + "," + KEY_TASKS_DONE + ") VALUES (2, 'Proyect', 4, 'TOMORROW', 0)");
+        db.execSQL("INSERT INTO " + TABLE_TASKS + " (" + KEY_TASKS_ID + "," + KEY_TASKS_NAME  + "," + KEY_TASKS_CLASS  + "," + KEY_TASKS_DUEDAE  + "," + KEY_TASKS_DONE + ") VALUES (3, 'Study for test', 3, '28/05/18', 0)");
+        db.execSQL("INSERT INTO " + TABLE_TASKS + " (" + KEY_TASKS_ID + "," + KEY_TASKS_NAME  + "," + KEY_TASKS_CLASS  + "," + KEY_TASKS_DUEDAE  + "," + KEY_TASKS_DONE + ") VALUES (4, 'WW2 Paper', 3, '30/05/18', 0)");
+        db.execSQL("INSERT INTO " + TABLE_TASKS + " (" + KEY_TASKS_ID + "," + KEY_TASKS_NAME  + "," + KEY_TASKS_CLASS  + "," + KEY_TASKS_DUEDAE  + "," + KEY_TASKS_DONE + ") VALUES (5, 'My humps', 1, '30/05/18', 0)");
 
     }
 
