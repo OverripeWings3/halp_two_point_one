@@ -7,6 +7,7 @@ import android.graphics.BitmapFactory;
 import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.os.AsyncTask;
+import android.preference.PreferenceManager;
 import android.support.annotation.NonNull;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
@@ -34,8 +35,7 @@ import java.net.URI;
 import java.net.URL;
 
 public class ActivityMain extends AppCompatActivity  implements
-        NavigationView.OnNavigationItemSelectedListener,
-        PreferenceFragmentCompat.OnPreferenceStartScreenCallback{
+        NavigationView.OnNavigationItemSelectedListener{
     private DrawerLayout drawer;
 
     TextView username, userEmail;
@@ -55,15 +55,6 @@ public class ActivityMain extends AppCompatActivity  implements
 
         android.support.v7.widget.Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-
-        if(loadPreferences() == "Norm") {
-            getApplication().setTheme(R.style.AppTheme);
-        }
-        else {
-            getApplication().setTheme(R.style.AppThemeInverse);
-        }
-
-
         drawer = findViewById(R.id.drawer_layout);
         NavigationView navigationView = findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
@@ -71,6 +62,10 @@ public class ActivityMain extends AppCompatActivity  implements
         username = header.findViewById(R.id.nav_header_username);
         userEmail = header.findViewById(R.id.nav_header_email);
         userPic = header.findViewById(R.id.nav_header_user_pic);
+
+        SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
+
+        String changedColor = sharedPreferences.getString(Constants.KEY_CHANGE_COLOR, "");
 
         getUserData();
 
@@ -82,6 +77,18 @@ public class ActivityMain extends AppCompatActivity  implements
                 R.string.navigation_drawer_open,R.string.navigation_drawer_close);
         drawer.addDrawerListener(toggle);
         toggle.syncState();
+
+
+        if(loadPreferences() == "Norm") {
+            getApplication().setTheme(R.style.AppTheme);
+            drawer.setBackgroundColor(getResources().getColor(R.color.colorAccent, getTheme()));
+            header.setBackgroundColor(getResources().getColor(R.color.colorPrimary, getTheme()));
+        }
+        else {
+            getApplication().setTheme(R.style.AppThemeInverse);
+            drawer.setBackgroundColor(getResources().getColor(R.color.colorAccentI, getTheme()));
+            header.setBackgroundColor(getResources().getColor(R.color.colorPrimaryI, getTheme()));
+        }
 
         if (savedInstanceState == null) {
             getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
@@ -96,7 +103,7 @@ public class ActivityMain extends AppCompatActivity  implements
     @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
 
-        switch (item.getItemId()){
+        switch (item.getItemId()) {
             case R.id.nav_home:
                 getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
                         new HomeFragment()).commit();
@@ -132,11 +139,6 @@ public class ActivityMain extends AppCompatActivity  implements
         } else {
             super.onBackPressed();
         }
-    }
-
-    @Override
-    public boolean onPreferenceStartScreen(PreferenceFragmentCompat caller, PreferenceScreen pref) {
-        return false;
     }
 
     public void getUserData() {

@@ -16,7 +16,7 @@
             android:title="@string/pref_change_style"
             android:summary="@string/pref_change_style_summ">
             <Preference
-                android:key="button_change_color_inv"
+                android:key="button_change_color_norm"
                 android:title="@string/pref_color_norm"
                 />
             <Preference
