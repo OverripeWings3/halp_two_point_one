@@ -18,6 +18,7 @@ import com.google.android.gms.auth.api.signin.GoogleSignInClient;
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.FirebaseAuth;
 import com.iteso.is699367.halp_3.Constants.Constants;
 
 import java.util.ArrayList;
@@ -32,6 +33,7 @@ public class SettingsFragment extends PreferenceFragment{
     private Preference logOutPref;
     private Preference invColorPref;
     private Preference normColorPref;
+    private FirebaseAuth mAuth;
 
 
     @Override
@@ -41,6 +43,7 @@ public class SettingsFragment extends PreferenceFragment{
         logOutPref = findPreference(Constants.KEY_LOG_OUT);
         invColorPref = findPreference(Constants.KEY_CHANGE_COLOR_INVR);
         normColorPref = findPreference(Constants.KEY_CHANGE_COLOR_NORM);
+        mAuth = FirebaseAuth.getInstance();
 
         logOutPref.setOnPreferenceClickListener(new Preference.OnPreferenceClickListener() {
             @Override
@@ -85,16 +88,11 @@ public class SettingsFragment extends PreferenceFragment{
 
 
     private void signOut() {
-        GoogleSignInOptions gso = new GoogleSignInOptions.Builder(GoogleSignInOptions
-                .DEFAULT_SIGN_IN).build();
-        GoogleSignInClient mGoogleSignInClient = GoogleSignIn.getClient(getActivity(), gso);
-        mGoogleSignInClient.signOut().addOnCompleteListener(new OnCompleteListener<Void>() {
-            @Override
-            public void onComplete(@NonNull Task<Void> task) {
-                Intent intent = new Intent(getActivity(), ActivityLogin.class);
-                intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
-                startActivity(intent);
-            }
-        });
+        mAuth.signOut();
+        Intent intent = new Intent(getActivity(), ActivityLogin.class);
+        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+        startActivity(intent);
+
+
     }
 }

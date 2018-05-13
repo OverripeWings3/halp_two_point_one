@@ -20,6 +20,8 @@ import android.widget.TextView;
 import com.google.android.gms.auth.api.signin.GoogleSignIn;
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
 import com.google.android.gms.common.api.GoogleApiClient;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
 import com.iteso.is699367.halp_3.Constants.Constants;
 import com.squareup.picasso.Picasso;
@@ -35,12 +37,11 @@ import com.squareup.picasso.*;
 public class ActivityMain extends AppCompatActivity  implements
         NavigationView.OnNavigationItemSelectedListener{
     private DrawerLayout drawer;
+    private FirebaseAuth mAuth;
     TextView username, userEmail;
     ImageView userPic;
 
     String personName;
-    String personGivenName;
-    String personFamilyName;
     String personEmail;
     String personId;
     Uri personPhoto;
@@ -65,6 +66,9 @@ public class ActivityMain extends AppCompatActivity  implements
         username = header.findViewById(R.id.nav_header_username);
         userEmail = header.findViewById(R.id.nav_header_email);
         userPic = header.findViewById(R.id.nav_header_user_pic);
+
+        mAuth = FirebaseAuth.getInstance();
+        FirebaseUser user = mAuth.getCurrentUser();
 
         getUserData();
 
@@ -128,14 +132,12 @@ public class ActivityMain extends AppCompatActivity  implements
     }
 
     public void getUserData() {
-        GoogleSignInAccount account = GoogleSignIn.getLastSignedInAccount(getApplicationContext());
-        if(account != null) {
-            personName = account.getDisplayName();
-            personGivenName = account.getGivenName();
-            personFamilyName = account.getFamilyName();
-            personEmail = account.getEmail();
-            personId = account.getId();
-            personPhoto = account.getPhotoUrl();
+        FirebaseUser user = mAuth.getCurrentUser();
+        if(user != null) {
+            personName = user.getDisplayName();
+            personEmail = user.getEmail();
+            personId = user.getUid();
+            personPhoto = user.getPhotoUrl();
 
         }
     }
