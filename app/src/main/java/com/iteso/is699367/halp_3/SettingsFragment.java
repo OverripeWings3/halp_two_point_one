@@ -1,4 +1,4 @@
-package com.iteso.is699367.halp_two_point_one;
+package com.iteso.is699367.halp_3;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -15,7 +15,7 @@ import com.google.android.gms.auth.api.signin.GoogleSignInClient;
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
-import com.iteso.is699367.halp_two_point_one.Constants.Constants;
+import com.iteso.is699367.halp_3.Constants.Constants;
 
 /**
  * Created by sjacobus on 24/04/18.

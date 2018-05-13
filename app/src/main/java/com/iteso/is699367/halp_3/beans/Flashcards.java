@@ -1,4 +1,4 @@
-package com.iteso.is699367.halp_two_point_one.beans;
+package com.iteso.is699367.halp_3.beans;
 
 import android.os.Parcel;
 import android.os.Parcelable;

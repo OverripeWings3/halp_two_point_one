@@ -1,4 +1,4 @@
-package com.iteso.is699367.halp_two_point_one;
+package com.iteso.is699367.halp_3;
 
 import org.junit.Test;
 
