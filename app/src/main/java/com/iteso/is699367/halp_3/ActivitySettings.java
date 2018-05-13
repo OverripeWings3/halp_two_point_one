@@ -27,8 +27,7 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.iteso.is699367.halp_3.Constants.Constants;
 
-public class ActivitySettings extends PreferenceActivity
-        {
+public class ActivitySettings extends PreferenceActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,12 +36,5 @@ public class ActivitySettings extends PreferenceActivity
         getFragmentManager().beginTransaction().replace(android.R.id.content
                 , new SettingsFragment())
                 .commit();
-
     }
-
-    @Override
-    public void onBackPressed() {
-        super.onBackPressed();
-    }
-
 }
