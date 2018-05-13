@@ -24,6 +24,7 @@ import android.widget.TextView;
 import com.google.android.gms.auth.api.signin.GoogleSignIn;
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
 import com.google.android.gms.common.api.GoogleApiClient;
+import com.google.firebase.database.DatabaseReference;
 import com.iteso.is699367.halp_two_point_one.Constants.Constants;
 import com.squareup.picasso.Picasso;
 
@@ -37,6 +38,8 @@ public class ActivityMain extends AppCompatActivity  implements
         NavigationView.OnNavigationItemSelectedListener,
         PreferenceFragmentCompat.OnPreferenceStartScreenCallback{
     private DrawerLayout drawer;
+
+    DatabaseReference firebaseDatabase;
 
     TextView username, userEmail;
     ImageView userPic;
@@ -148,6 +151,7 @@ public class ActivityMain extends AppCompatActivity  implements
             personEmail = account.getEmail();
             personId = account.getId();
             personPhoto = account.getPhotoUrl();
+
         }
     }
 
