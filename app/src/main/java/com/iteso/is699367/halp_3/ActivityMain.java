@@ -29,7 +29,7 @@ import java.io.InputStream;
 import java.net.MalformedURLException;
 import java.net.URI;
 import java.net.URL;
-import com.iteso.is699367.halp_two_point_one.Constants.Constants;
+import com.iteso.is699367.halp_3.Constants.Constants;
 import com.squareup.picasso.*;
 
 public class ActivityMain extends AppCompatActivity  implements
