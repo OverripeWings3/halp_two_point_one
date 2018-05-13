@@ -1,28 +1,100 @@
 package com.iteso.is699367.halp_two_point_one;
 
+import android.content.Context;
+import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.preference.Preference;
+import android.preference.PreferenceFragment;
+import android.preference.PreferenceManager;
+import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
-import android.support.v4.app.Fragment;
-import android.view.LayoutInflater;
+import android.util.Log;
 import android.view.View;
-import android.view.ViewGroup;
-import android.widget.ImageView;
-import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.android.gms.auth.api.signin.GoogleSignIn;
-import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
+import com.google.android.gms.auth.api.signin.GoogleSignInClient;
+import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.iteso.is699367.halp_two_point_one.Constants.Constants;
 
-public class SettingsFragment extends Fragment {
+import java.util.ArrayList;
 
-    @Nullable
+/**
+ * Created by sjacobus on 24/04/18.
+ */
+
+
+public class SettingsFragment extends PreferenceFragment{
+
+    private Preference logOutPref;
+    private Preference invColorPref;
+    private Preference normColorPref;
+
+
     @Override
-    public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+    public void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        addPreferencesFromResource(R.xml.preferences);
+        logOutPref = findPreference(Constants.KEY_LOG_OUT);
+        invColorPref = findPreference(Constants.KEY_CHANGE_COLOR_INVR);
+        normColorPref = findPreference(Constants.KEY_CHANGE_COLOR_NORM);
 
-        View view = inflater.inflate(R.layout.fragment_settings, container, false);
-        return view;
+        logOutPref.setOnPreferenceClickListener(new Preference.OnPreferenceClickListener() {
+            @Override
+            public boolean onPreferenceClick(Preference preference) {
+                signOut();
+                return false;
+            }
+        });
+
+        /*invColorPref.setOnPreferenceClickListener(new Preference.OnPreferenceClickListener() {
+            @Override
+            public boolean onPreferenceClick(Preference preference) {
+                SharedPreferences sharedPreferences = getActivity().getPreferences(Context.MODE_PRIVATE);
+                getActivity().getApplication().setTheme(R.style.AppThemeInverse);
+                SharedPreferences.Editor editor = sharedPreferences.edit();
+                editor.putString(Constants.KEY_CHANGE_COLOR, Constants.KEY_CHANGE_COLOR_INVR);
+                editor.clear();
+                editor.commit();
+                Log.i("COLOR INV", "YOU'VE CHANGED COLOR TO INV ********************");
+                Log.i("COLOR INV", sharedPreferences.getString(Constants.KEY_CHANGE_COLOR, null));
+                return false;
+            }
+        });
+
+        normColorPref.setOnPreferenceClickListener(new Preference.OnPreferenceClickListener() {
+            @Override
+            public boolean onPreferenceClick(Preference preference) {
+                SharedPreferences sharedPreferences = getActivity().getPreferences(Context.MODE_PRIVATE);
+                getActivity().getApplication().setTheme(R.style.AppTheme);
+                SharedPreferences.Editor editor = sharedPreferences.edit();
+                editor.putString(Constants.KEY_CHANGE_COLOR, Constants.KEY_CHANGE_COLOR_NORM);
+                editor.clear();
+                editor.commit();
+                Log.i("COLOR NORM", "YOU'VE CHANGED COLOR TO NORM ********************");
+                Log.i("COLOR NORM", sharedPreferences.getString(Constants.KEY_CHANGE_COLOR, null));
+                return false;
+            }
+        });*/
+
     }
 
-    public void setText() {
 
+
+    private void signOut() {
+        GoogleSignInOptions gso = new GoogleSignInOptions.Builder(GoogleSignInOptions
+                .DEFAULT_SIGN_IN).build();
+        GoogleSignInClient mGoogleSignInClient = GoogleSignIn.getClient(getActivity(), gso);
+        mGoogleSignInClient.signOut().addOnCompleteListener(new OnCompleteListener<Void>() {
+            @Override
+            public void onComplete(@NonNull Task<Void> task) {
+                Intent intent = new Intent(getActivity(), ActivityLogin.class);
+                intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                startActivity(intent);
+            }
+        });
     }
 }

@@ -9,4 +9,12 @@
         <item name="android:statusBarColor">@android:color/transparent</item>
     </style>
 
+    <style name="AppThemeInverse" parent="Theme.AppCompat.Light.NoActionBar">
+        <!-- Customize your theme here. -->
+        <item name="colorPrimary">@color/colorPrimaryI</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDarkI</item>
+        <item name="colorAccent">@color/colorAccentI</item>
+        <item name="android:statusBarColor">@android:color/transparent</item>
+    </style>
+
 </resources>

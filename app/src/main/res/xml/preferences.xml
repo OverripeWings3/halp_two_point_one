@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen
+    android:key="rootKey"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+    <PreferenceCategory android:title="Log Out">
+        <Preference
+        android:key="button_logout"
+        android:title="@string/pref_log_out"
+        android:summary="@string/pref_log_summ"
+        />
+    </PreferenceCategory>
+</PreferenceScreen>

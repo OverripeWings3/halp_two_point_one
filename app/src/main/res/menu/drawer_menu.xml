@@ -7,23 +7,27 @@
         <item
             android:id="@+id/nav_home"
             android:icon="@drawable/ic_home"
-            android:title="Home" />
+            android:title="@string/home" />
         <item
             android:id="@+id/nav_agenda"
             android:icon="@drawable/ic_agenda"
-            android:title="Agenda" />
+            android:title="@string/agenda" />
         <item
-            android:id="@+id/nav_assigments"
-            android:icon="@drawable/ic_assigments"
-            android:title="Assigments" />
+            android:id="@+id/nav_assignments"
+            android:icon="@drawable/ic_assignments"
+            android:title="@string/assignments" />
         <item
             android:id="@+id/nav_flashcards"
             android:icon="@drawable/ic_flashcards"
-            android:title="Flash Cards" />
-        <item
-            android:id="@+id/nav_settings"
-            android:icon="@drawable/ic_settings"
-            android:title="Settings" />
+            android:title="@string/flash" />
     </group>
+
+
+    <item
+        android:title="@string/settings"
+        android:id="@+id/nav_settings"
+        android:icon="@drawable/ic_settings">
+    </item>
+
 
 </menu>

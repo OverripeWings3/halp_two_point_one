@@ -1,0 +1,20 @@
+<resources>
+    <string name="app_name">Halp!</string>
+    <string name="navigation_drawer_open">Abrir menú</string>
+    <string name="navigation_drawer_close">Cerrar menú</string>
+
+    <string name="home">Inicio</string>
+    <string name="agenda">Agenda</string>
+    <string name="assignments">Tareas</string>
+    <string name="flash">Flash Cards</string>
+    <string name="settings">Preferencias</string>
+
+    <string name="pref_change_style">Cambiar Estilo</string>
+    <string name="pref_change_style_summ">
+        Escoge como quieres que se vea Halp!</string>
+    <string name="pref_log_out">Cerrar Sesión</string>
+    <string name="pref_log_summ">Cerrar sesión de Halp!</string>
+    <string name="pref_color1">Colores Inversos</string>
+    <string name="pref_color_norm">Colores Normales</string>
+
+</resources>
