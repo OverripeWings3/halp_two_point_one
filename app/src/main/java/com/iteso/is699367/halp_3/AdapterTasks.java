@@ -1,4 +1,4 @@
-package com.iteso.is699367.halp_two_point_one;
+package com.iteso.is699367.halp_3;
 
 import android.content.Context;
 import android.content.Intent;
@@ -14,7 +14,7 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.iteso.is699367.halp_two_point_one.beans.Tasks;
+import com.iteso.is699367.halp_3.beans.Tasks;
 
 import java.util.ArrayList;
 

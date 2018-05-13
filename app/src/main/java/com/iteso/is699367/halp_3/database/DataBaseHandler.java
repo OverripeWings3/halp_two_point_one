@@ -1,4 +1,4 @@
-package com.iteso.is699367.halp_two_point_one.database;
+package com.iteso.is699367.halp_3.database;
 
 import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;

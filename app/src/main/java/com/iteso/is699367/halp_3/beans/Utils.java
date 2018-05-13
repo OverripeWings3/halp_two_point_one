@@ -1,4 +1,4 @@
-package com.iteso.is699367.halp_two_point_one.beans;
+package com.iteso.is699367.halp_3.beans;
 
 /**
  * Created by sjacobus on 24/04/18.
@@ -7,7 +7,7 @@ package com.iteso.is699367.halp_two_point_one.beans;
 import android.app.Activity;
 import android.content.Intent;
 
-import com.iteso.is699367.halp_two_point_one.R;
+import com.iteso.is699367.halp_3.R;
 
 public class Utils
 {

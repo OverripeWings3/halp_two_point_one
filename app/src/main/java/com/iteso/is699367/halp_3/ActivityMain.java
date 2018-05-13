@@ -1,4 +1,4 @@
-package com.iteso.is699367.halp_two_point_one;
+package com.iteso.is699367.halp_3;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -25,7 +25,7 @@ import com.google.android.gms.auth.api.signin.GoogleSignIn;
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
 import com.google.android.gms.common.api.GoogleApiClient;
 import com.google.firebase.database.DatabaseReference;
-import com.iteso.is699367.halp_two_point_one.Constants.Constants;
+import com.iteso.is699367.halp_3.Constants.Constants;
 import com.squareup.picasso.Picasso;
 
 import java.io.IOException;

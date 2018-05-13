@@ -1,12 +1,12 @@
-package com.iteso.is699367.halp_two_point_one.database;
+package com.iteso.is699367.halp_3.database;
 
 import android.content.ContentValues;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.util.Log;
 
-import com.iteso.is699367.halp_two_point_one.beans.Tasks;
-import com.iteso.is699367.halp_two_point_one.beans.Classes;
+import com.iteso.is699367.halp_3.beans.Tasks;
+import com.iteso.is699367.halp_3.beans.Classes;
 
 import java.util.ArrayList;
 
