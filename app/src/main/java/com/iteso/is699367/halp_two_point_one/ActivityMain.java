@@ -1,12 +1,10 @@
 package com.iteso.is699367.halp_two_point_one;
 
+import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
-import android.graphics.drawable.Drawable;
 import android.net.Uri;
-import android.os.AsyncTask;
+import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.support.annotation.NonNull;
 import android.support.design.widget.NavigationView;
@@ -14,30 +12,19 @@ import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
-import android.support.v7.preference.PreferenceFragmentCompat;
-import android.support.v7.preference.PreferenceScreen;
+import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
-
 import com.google.android.gms.auth.api.signin.GoogleSignIn;
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
-import com.google.android.gms.common.api.GoogleApiClient;
 import com.iteso.is699367.halp_two_point_one.Constants.Constants;
-import com.squareup.picasso.Picasso;
-
-import java.io.IOException;
-import java.io.InputStream;
-import java.net.MalformedURLException;
-import java.net.URI;
-import java.net.URL;
+import com.squareup.picasso.*;
 
 public class ActivityMain extends AppCompatActivity  implements
         NavigationView.OnNavigationItemSelectedListener{
     private DrawerLayout drawer;
-
     TextView username, userEmail;
     ImageView userPic;
 
@@ -51,6 +38,12 @@ public class ActivityMain extends AppCompatActivity  implements
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        String pref = loadPreferences();
+        if(pref.equals(Constants.KEY_CHANGE_COLOR_INVR)) {
+            setTheme(R.style.AppThemeInverse);
+        }
+        else
+            setTheme(R.style.AppTheme);
         setContentView(R.layout.activity_main);
 
         android.support.v7.widget.Toolbar toolbar = findViewById(R.id.toolbar);
@@ -63,10 +56,6 @@ public class ActivityMain extends AppCompatActivity  implements
         userEmail = header.findViewById(R.id.nav_header_email);
         userPic = header.findViewById(R.id.nav_header_user_pic);
 
-        SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
-
-        String changedColor = sharedPreferences.getString(Constants.KEY_CHANGE_COLOR, "");
-
         getUserData();
 
         username.setText(personName);
@@ -77,19 +66,6 @@ public class ActivityMain extends AppCompatActivity  implements
                 R.string.navigation_drawer_open,R.string.navigation_drawer_close);
         drawer.addDrawerListener(toggle);
         toggle.syncState();
-
-
-        if(loadPreferences() == "Norm") {
-            getApplication().setTheme(R.style.AppTheme);
-            drawer.setBackgroundColor(getResources().getColor(R.color.colorAccent, getTheme()));
-            header.setBackgroundColor(getResources().getColor(R.color.colorPrimary, getTheme()));
-        }
-        else {
-            getApplication().setTheme(R.style.AppThemeInverse);
-            drawer.setBackgroundColor(getResources().getColor(R.color.colorAccentI, getTheme()));
-            header.setBackgroundColor(getResources().getColor(R.color.colorPrimaryI, getTheme()));
-        }
-
         if (savedInstanceState == null) {
             getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
                     new HomeFragment()).commit();
@@ -154,8 +130,10 @@ public class ActivityMain extends AppCompatActivity  implements
     }
 
     public String loadPreferences() {
-        SharedPreferences sharedPreferences = getSharedPreferences(Constants.USER_PREFERENCES, MODE_PRIVATE);
-        String appTheme = sharedPreferences.getString(Constants.KEY_CHANGE_COLOR, null);
-        return appTheme;
+        SharedPreferences sharedPreferences = getPreferences(MODE_PRIVATE);
+        String colorChange = sharedPreferences.getString(Constants.KEY_CHANGE_COLOR,
+                Constants.KEY_CHANGE_COLOR_NORM);
+        Log.i("COLOR SHIT:::::::::", colorChange);
+        return colorChange;
     }
 }

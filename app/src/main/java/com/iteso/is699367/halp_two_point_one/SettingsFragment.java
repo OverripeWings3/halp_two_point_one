@@ -1,5 +1,6 @@
 package com.iteso.is699367.halp_two_point_one;
 
+import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -8,6 +9,7 @@ import android.preference.PreferenceFragment;
 import android.preference.PreferenceManager;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
+import android.util.Log;
 import android.view.View;
 import android.widget.Toast;
 
@@ -25,8 +27,7 @@ import java.util.ArrayList;
  */
 
 
-public class SettingsFragment extends PreferenceFragment
-        implements SharedPreferences.OnSharedPreferenceChangeListener{
+public class SettingsFragment extends PreferenceFragment{
 
     private Preference logOutPref;
     private Preference invColorPref;
@@ -37,7 +38,6 @@ public class SettingsFragment extends PreferenceFragment
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         addPreferencesFromResource(R.xml.preferences);
-        ArrayList<Preference> preferences = new ArrayList<Preference>();
         logOutPref = findPreference(Constants.KEY_LOG_OUT);
         invColorPref = findPreference(Constants.KEY_CHANGE_COLOR_INVR);
         normColorPref = findPreference(Constants.KEY_CHANGE_COLOR_NORM);
@@ -50,10 +50,17 @@ public class SettingsFragment extends PreferenceFragment
             }
         });
 
-        invColorPref.setOnPreferenceClickListener(new Preference.OnPreferenceClickListener() {
+        /*invColorPref.setOnPreferenceClickListener(new Preference.OnPreferenceClickListener() {
             @Override
             public boolean onPreferenceClick(Preference preference) {
+                SharedPreferences sharedPreferences = getActivity().getPreferences(Context.MODE_PRIVATE);
                 getActivity().getApplication().setTheme(R.style.AppThemeInverse);
+                SharedPreferences.Editor editor = sharedPreferences.edit();
+                editor.putString(Constants.KEY_CHANGE_COLOR, Constants.KEY_CHANGE_COLOR_INVR);
+                editor.clear();
+                editor.commit();
+                Log.i("COLOR INV", "YOU'VE CHANGED COLOR TO INV ********************");
+                Log.i("COLOR INV", sharedPreferences.getString(Constants.KEY_CHANGE_COLOR, null));
                 return false;
             }
         });
@@ -61,12 +68,21 @@ public class SettingsFragment extends PreferenceFragment
         normColorPref.setOnPreferenceClickListener(new Preference.OnPreferenceClickListener() {
             @Override
             public boolean onPreferenceClick(Preference preference) {
+                SharedPreferences sharedPreferences = getActivity().getPreferences(Context.MODE_PRIVATE);
                 getActivity().getApplication().setTheme(R.style.AppTheme);
+                SharedPreferences.Editor editor = sharedPreferences.edit();
+                editor.putString(Constants.KEY_CHANGE_COLOR, Constants.KEY_CHANGE_COLOR_NORM);
+                editor.clear();
+                editor.commit();
+                Log.i("COLOR NORM", "YOU'VE CHANGED COLOR TO NORM ********************");
+                Log.i("COLOR NORM", sharedPreferences.getString(Constants.KEY_CHANGE_COLOR, null));
                 return false;
             }
-        });
+        });*/
 
     }
+
+
 
     private void signOut() {
         GoogleSignInOptions gso = new GoogleSignInOptions.Builder(GoogleSignInOptions
@@ -80,31 +96,5 @@ public class SettingsFragment extends PreferenceFragment
                 startActivity(intent);
             }
         });
-    }
-
-    @Override
-    public void onSharedPreferenceChanged(SharedPreferences sharedPreferences, String s) {
-        if(s.equals(Constants.KEY_CHANGE_COLOR_INVR)) {
-            Preference changeColor = findPreference(s);
-            changeColor.setSummary(sharedPreferences.getString(Constants.KEY_CHANGE_COLOR, ""));
-        }
-        else if(s.equals(Constants.KEY_CHANGE_COLOR_NORM)) {
-            Preference changeColor = findPreference(s);
-            changeColor.setSummary(sharedPreferences.getString(Constants.KEY_CHANGE_COLOR, ""));
-        }
-    }
-
-    @Override
-    public void onResume() {
-        super.onResume();
-        getPreferenceScreen().getSharedPreferences()
-                .registerOnSharedPreferenceChangeListener(this);
-    }
-
-    @Override
-    public void onPause() {
-        super.onPause();
-        getPreferenceScreen().getSharedPreferences()
-                .unregisterOnSharedPreferenceChangeListener(this);
     }
 }
