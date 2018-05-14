@@ -54,22 +54,7 @@ public class AdapterTasks extends RecyclerView.Adapter<AdapterTasks.ViewHolder> 
     public void onBindViewHolder(final ViewHolder holder, int position) {
         holder.mName.setText(tasks.get(holder.getAdapterPosition()).getName());
         holder.mDuedate.setText(tasks.get(holder.getAdapterPosition()).getDueDate());
-        holder.mClass.setText(tasks.get(holder.getAdapterPosition()).getClas().getName());
-
-
-        /*switch(tasks.get(holder.getAdapterPosition()).getDone()){
-            case 0:
-                holder.mImage.setImageResource(R.drawable.ic_check_box_outline_blank); break;
-            case 1:
-                holder.mImage.setImageResource(R.drawable.ic_check_box); break;
-
-        }
-        Bitmap bitmap = ((BitmapDrawable)holder.mImage.getDrawable()).getBitmap();
-        holder.mImage.setImageBitmap(bitmap);*/
-
-
-
-
+        holder.mClass.setText(tasks.get(holder.getAdapterPosition()).getClas());
 
     }
 
