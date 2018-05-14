@@ -4,20 +4,15 @@ import android.os.Parcel;
 import android.os.Parcelable;
 
 public class Classes implements Parcelable {
-    private int id;
     private String name;
+    private String room;
+    private String teacher;
+    private String time;
+
 
     @Override
     public String toString() {
         return name;
-    }
-
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
     }
 
     public String getName() {
@@ -28,6 +23,27 @@ public class Classes implements Parcelable {
         this.name = name;
     }
 
+    public String getRoom() {
+        return room;
+    }
+
+    public void setRoom(String room) {
+        this.room = room;
+    }
+    public String getTeacher() {
+        return teacher;
+    }
+
+    public void setTeacher(String teacher) {
+        this.teacher = teacher;
+    }
+    public String getTime() {
+        return time;
+    }
+
+    public void setTime(String time) {
+        this.time = time;
+    }
 
     public Classes() {
 
@@ -40,13 +56,17 @@ public class Classes implements Parcelable {
 
     @Override
     public void writeToParcel(Parcel dest, int flags) {
-        dest.writeInt(this.id);
         dest.writeString(this.name);
+        dest.writeString(this.room);
+        dest.writeString(this.teacher);
+        dest.writeString(this.time);
     }
 
     private Classes(Parcel in) {
-        this.id = in.readInt();
         this.name = in.readString();
+        this.room = in.readString();
+        this.teacher = in.readString();
+        this.time = in.readString();
     }
 
     public static final Creator<Classes> CREATOR = new Creator<Classes>() {
