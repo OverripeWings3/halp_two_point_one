@@ -38,4 +38,9 @@
     <string name="addTaskDuedate">Insert Task Duedate:</string>
     <string name="addTaskClass">Insert Task Class</string>
 
+    <string name="addClassName">Insert Class Name</string>
+    <string name="addClassRoom">Insert Class Room</string>
+    <string name="addClassTeacher">Insert Class Teacher</string>
+    <string name="addClassTime">Insert Class Time:</string>
+
 </resources>

@@ -21,8 +21,9 @@
         <activity android:name=".ActivityMain" />
         <activity android:name=".ActivitySettings" />
         <activity android:name=".ActivityGetInfo" />
-        <activity android:name=".ActivityUser"/>
-        <activity android:name=".ActivityAddTask"/>
+        <activity android:name=".ActivityUser" />
+        <activity android:name=".ActivityAddTask" />
+        <activity android:name=".ActivityAddClass"></activity>
     </application>
 
 </manifest>
