@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ActivityUser"
+    android:background="@color/colorAccent">
+
+    <ImageView
+        android:src="@mipmap/ic_launcher"
+        android:id="@+id/UserPic"
+        android:layout_width="match_parent"
+        android:layout_height="135dp"
+        android:layout_marginTop="35dp"
+        android:layout_centerHorizontal="true"
+        android:background="@color/colorPrimary"/>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="5dp"
+        android:layout_below="@id/UserPic"
+        android:background="@android:color/white"/>
+
+    <TextView
+        android:text="Hi, my names is: "
+        android:textSize="15dp"
+        android:id="@+id/UserName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:layout_below="@id/UserPic"
+        android:padding="15dp"/>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="5dp"
+        android:layout_below="@id/UserName"
+        android:background="@android:color/white"/>
+
+    <TextView
+        android:text="AndMyEmailIs@ThisOne.com "
+        android:textSize="15dp"
+        android:id="@+id/UserEmail"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:layout_below="@id/UserName"
+        android:padding="15dp"/>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="5dp"
+        android:layout_below="@id/UserEmail"
+        android:background="@android:color/white"/>
+
+    <TextView
+        android:text="Also, my School is: "
+        android:textSize="15dp"
+        android:id="@+id/UserSchool"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:layout_below="@id/UserEmail"
+        android:padding="15dp"/>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="5dp"
+        android:layout_below="@id/UserSchool"
+        android:background="@android:color/white"/>
+
+    <TextView
+        android:text="I Study thus there "
+        android:textSize="15dp"
+        android:id="@+id/UserCarreer"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:layout_below="@id/UserSchool"
+        android:padding="15dp"/>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="5dp"
+        android:layout_below="@id/UserCarreer"
+        android:background="@android:color/white"/>
+
+    <TextView
+        android:text="And the grade Im in"
+        android:textSize="15dp"
+        android:id="@+id/UserGrade"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:layout_below="@id/UserCarreer"
+        android:padding="15dp"/>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="5dp"
+        android:layout_below="@id/UserGrade"
+        android:background="@android:color/white"/>
+
+    <TextView
+        android:text="34/34/34"
+        android:textSize="15dp"
+        android:id="@+id/UserBirthDay"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:layout_below="@id/UserGrade"
+        android:padding="15dp"/>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="5dp"
+        android:layout_below="@id/UserBirthDay"
+        android:background="@android:color/white"/>
+
+</RelativeLayout>

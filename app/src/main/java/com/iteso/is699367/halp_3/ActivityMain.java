@@ -41,6 +41,8 @@ public class ActivityMain extends AppCompatActivity  implements
         NavigationView navigationView = findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
         View header = navigationView.getHeaderView(0);
+
+
         username = header.findViewById(R.id.nav_header_username);
         userEmail = header.findViewById(R.id.nav_header_email);
         userPic = header.findViewById(R.id.nav_header_user_pic);
@@ -53,6 +55,15 @@ public class ActivityMain extends AppCompatActivity  implements
         username.setText(personName);
         userEmail.setText(personEmail);
         Picasso.get().load(personPhoto).into(userPic);
+
+
+        userPic.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(ActivityMain.this, ActivityUser.class);
+                startActivity(intent);
+            }
+        });
 
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(this, drawer, toolbar,
                 R.string.navigation_drawer_open,R.string.navigation_drawer_close);
