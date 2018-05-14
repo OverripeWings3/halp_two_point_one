@@ -34,6 +34,11 @@ public class AssigmentFragment extends Fragment {
     FirebaseAuth mAuth;
     ArrayList<Tasks> tasks = new ArrayList<Tasks>();
     int i = 1;
+    int numChild =0 ;
+
+    public int getChild(){
+        return numChild;
+    }
 
 
     public AssigmentFragment() {
@@ -99,6 +104,7 @@ public class AssigmentFragment extends Fragment {
                         Log.i("COUNT ARRAY LIST", String.valueOf(tasks.size()));
                         AdapterTasks adapterProduct = new AdapterTasks(0, getActivity(), tasks);
                         recyclerView.setAdapter(adapterProduct);
+                        numChild = tasks.size();
                     }
                 }
                 @Override
