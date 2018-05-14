@@ -52,7 +52,10 @@ public class AssigmentFragment extends Fragment {
             fab.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    Toast.makeText(getActivity(), "fab", Toast.LENGTH_LONG).show();
+                    Intent intent = new Intent(getContext(), ActivityAddTask.class);
+
+                    startActivity(intent);
+
                 }
             });
         }

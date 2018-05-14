@@ -2,9 +2,11 @@ package com.iteso.is699367.halp_3;
 
 import android.content.Context;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.CheckBox;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -27,14 +29,14 @@ public class AdapterTasks extends RecyclerView.Adapter<AdapterTasks.ViewHolder> 
         TextView mName;
         TextView mDuedate;
         TextView mClass;
-        ImageView mImage;
+        CheckBox mCheck;
 
         ViewHolder(View v){
             super(v);
             mName = v.findViewById(R.id.task_name);
             mDuedate = v.findViewById(R.id.task_due_date);
             mClass = v.findViewById(R.id.task_class);
-            mImage = v.findViewById(R.id.task_check);
+            mCheck = v.findViewById(R.id.task_check);
         }
     }
     @Override
@@ -49,6 +51,8 @@ public class AdapterTasks extends RecyclerView.Adapter<AdapterTasks.ViewHolder> 
         holder.mName.setText(tasks.get(holder.getAdapterPosition()).getName());
         holder.mDuedate.setText(tasks.get(holder.getAdapterPosition()).getDuedate());
         holder.mClass.setText(tasks.get(holder.getAdapterPosition()).getClas());
+        holder.mCheck.setChecked(Boolean.getBoolean(tasks.get(holder.getAdapterPosition()).getDone()));
+        Log.i("Done value: ***********",tasks.get(holder.getAdapterPosition()).getDone() );
 
     }
 

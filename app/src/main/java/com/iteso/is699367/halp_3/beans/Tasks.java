@@ -4,7 +4,6 @@ import android.os.Parcel;
 import android.os.Parcelable;
 
 public class Tasks implements Parcelable {
-    private int id;
     private String name;
     private String duedate;
     private String done;
@@ -23,13 +22,9 @@ public class Tasks implements Parcelable {
         return name;
     }
 
-    public int getId() {
-        return id;
-    }
 
-    public void setId(int id) {
-        this.id = id;
-    }
+
+
 
     public String getName() {
         return name;
@@ -74,7 +69,6 @@ public class Tasks implements Parcelable {
 
     @Override
     public void writeToParcel(Parcel dest, int flags) {
-        dest.writeInt(this.id);
         dest.writeString(this.name);
         dest.writeString(this.duedate);
         dest.writeString(this.done);
@@ -82,7 +76,6 @@ public class Tasks implements Parcelable {
     }
 
     private Tasks(Parcel in) {
-        this.id = in.readInt();
         this.name = in.readString();
         this.duedate = in.readString();
         this.done = in.readString();
