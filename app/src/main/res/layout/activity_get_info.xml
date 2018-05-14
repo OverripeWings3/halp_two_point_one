@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ActivityGetInfo">
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+        <TextView
+            android:id="@+id/Disclaimer"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/disclaimer"
+            android:textSize="20dp"
+            android:padding="20dp"
+            />
+
+        <EditText
+            android:id="@+id/school_name"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/school_name_hint"
+            android:layout_below="@id/Disclaimer"
+            android:padding="10dp"/>
+
+        <EditText
+            android:id="@+id/carreer_name"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/carrer_hint"
+            android:layout_below="@id/school_name"
+            android:padding="10dp"/>
+
+        <EditText
+            android:id="@+id/grade"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/carrer_hint"
+            android:layout_below="@id/carreer_name"
+            android:padding="10dp"/>
+
+        <TextView
+            android:id="@+id/birthday_picker_label"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/birth_day_hint"
+            android:layout_below="@id/grade"
+            android:textSize="17dp"/>
+
+        <DatePicker
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/birthday_picker_label"
+            android:layout_centerInParent="true"
+            android:calendarViewShown="false"
+            android:datePickerMode="spinner">
+
+        </DatePicker>
+    </RelativeLayout>
+</ScrollView>
