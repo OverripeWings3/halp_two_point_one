@@ -51,8 +51,8 @@ public class AdapterTasks extends RecyclerView.Adapter<AdapterTasks.ViewHolder> 
         holder.mName.setText(tasks.get(holder.getAdapterPosition()).getName());
         holder.mDuedate.setText(tasks.get(holder.getAdapterPosition()).getDuedate());
         holder.mClass.setText(tasks.get(holder.getAdapterPosition()).getClas());
-        holder.mCheck.setChecked(Boolean.getBoolean(tasks.get(holder.getAdapterPosition()).getDone()));
-        Log.i("Done value: ***********",tasks.get(holder.getAdapterPosition()).getDone() );
+        holder.mCheck.setChecked(Boolean.valueOf(tasks.get(holder.getAdapterPosition()).getDone()));
+        Log.i("Done value: ***********",String.valueOf(Boolean.getBoolean(tasks.get(holder.getAdapterPosition()).getDone())) );
 
     }
 
