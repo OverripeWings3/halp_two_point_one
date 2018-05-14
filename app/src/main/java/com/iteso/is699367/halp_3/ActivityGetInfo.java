@@ -48,7 +48,7 @@ public class ActivityGetInfo extends AppCompatActivity {
             @Override
             public void onClick(View view) {
 
-                String bDay = String.valueOf(birthday.getDayOfMonth()) + "/" +
+                String bDay = String.valueOf(birthday.getDayOfMonth()) +
                         "/" + String.valueOf(birthday.getMonth() + 1) +
                         "/" + String.valueOf(birthday.getYear());
 
