@@ -16,10 +16,6 @@
             android:id="@+id/nav_assignments"
             android:icon="@drawable/ic_assignments"
             android:title="@string/assignments" />
-        <item
-            android:id="@+id/nav_flashcards"
-            android:icon="@drawable/ic_flashcards"
-            android:title="@string/flash" />
     </group>
 
 

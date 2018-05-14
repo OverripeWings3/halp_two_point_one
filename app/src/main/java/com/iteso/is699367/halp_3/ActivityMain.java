@@ -97,10 +97,6 @@ public class ActivityMain extends AppCompatActivity  implements
                 getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
                         new AssigmentFragment()).commit();
                 break;
-            case R.id.nav_flashcards:
-                getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
-                        new FlashcardsFragment()).commit();
-                break;
             case R.id.nav_settings:
                 Intent intent = new Intent(ActivityMain.this, ActivitySettings.class);
                 startActivity(intent);
