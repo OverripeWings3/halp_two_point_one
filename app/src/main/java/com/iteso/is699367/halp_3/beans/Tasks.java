@@ -7,14 +7,14 @@ public class Tasks implements Parcelable {
     private int id;
     private String name;
     private String dueDate;
-    private int done;
-    private Classes clas;
+    private String done;
+    private String clas;
 
-    public Classes getClas() {
+    public String getClas() {
         return clas;
     }
 
-    public void setClas(Classes clas) {
+    public void setClas(String clas) {
         this.clas = clas;
     }
 
@@ -47,11 +47,11 @@ public class Tasks implements Parcelable {
         this.dueDate = dueDate;
     }
 
-    public int getDone() {
+    public String getDone() {
         return done;
     }
 
-    public void setDone(int done) {
+    public void setDone(String done) {
         this.done = done;
     }
 
@@ -60,7 +60,7 @@ public class Tasks implements Parcelable {
 
     }
 
-    public Tasks(String name, String dueDate, int done, Classes clas) {
+    public Tasks(String name, String dueDate, String done, String clas) {
         this.name = name;
         this.dueDate = dueDate;
         this.done = done;
@@ -77,16 +77,16 @@ public class Tasks implements Parcelable {
         dest.writeInt(this.id);
         dest.writeString(this.name);
         dest.writeString(this.dueDate);
-        dest.writeInt(this.done);
-        dest.writeParcelable(this.clas, flags);
+        dest.writeString(this.done);
+        dest.writeString(this.clas);
     }
 
     private Tasks(Parcel in) {
         this.id = in.readInt();
         this.name = in.readString();
         this.dueDate = in.readString();
-        this.done = in.readInt();
-        this.clas = in.readParcelable(Classes.class.getClassLoader());
+        this.done = in.readString();
+        this.clas = in.readString();
     }
 
     public static final Creator<Tasks> CREATOR = new Creator<Tasks>() {

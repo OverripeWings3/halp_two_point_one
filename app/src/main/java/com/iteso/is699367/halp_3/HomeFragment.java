@@ -12,7 +12,6 @@ import android.view.ViewGroup;
 
 import com.iteso.is699367.halp_3.beans.Tasks;
 import com.iteso.is699367.halp_3.database.DataBaseHandler;
-import com.iteso.is699367.halp_3.database.TaskControl;
 
 import java.util.ArrayList;
 
@@ -38,17 +37,16 @@ public class HomeFragment extends Fragment {
         super.onActivityCreated(savedInstanceState);
 
 
-        recyclerView.setHasFixedSize(true);
+        /*recyclerView.setHasFixedSize(true);
         // Use a linear layout manager
         LinearLayoutManager mLayoutManager = new LinearLayoutManager(getActivity());
         recyclerView.setLayoutManager(mLayoutManager);
 
-        TaskControl taskControl = new TaskControl();
-        DataBaseHandler dh = DataBaseHandler.getInstance(getActivity());
-        ArrayList<Tasks> tasks = taskControl.getTasks( dh);
+
+        ArrayList<Tasks> tasks = AssigmentFragment.getArray();
 
         AdapterTasks adapterProduct = new AdapterTasks(0, getActivity(), tasks);
-        recyclerView.setAdapter(adapterProduct);
+        recyclerView.setAdapter(adapterProduct);*/
     }
 
     @Override
