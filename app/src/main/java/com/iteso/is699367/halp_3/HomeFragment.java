@@ -6,10 +6,18 @@ import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 import com.iteso.is699367.halp_3.beans.Tasks;
 import com.iteso.is699367.halp_3.database.DataBaseHandler;
 
@@ -17,6 +25,10 @@ import java.util.ArrayList;
 
 public class HomeFragment extends Fragment {
     RecyclerView recyclerView;
+    DatabaseReference firebaseDatabase;
+    DatabaseReference mUserTasks;
+    FirebaseAuth mAuth;
+    ArrayList<Tasks> tasks = new ArrayList<Tasks>();
 
     public HomeFragment() {
         // Required empty public constructor
@@ -29,6 +41,10 @@ public class HomeFragment extends Fragment {
         // Inflate the layout for this fragment
         View rootView = inflater.inflate(R.layout.fragment_home, container, false);
         recyclerView = rootView.findViewById(R.id.fragment_recycler);
+        mAuth = FirebaseAuth.getInstance();
+        FirebaseUser user = mAuth.getCurrentUser();
+        firebaseDatabase = FirebaseDatabase.getInstance().getReference();
+        mUserTasks = firebaseDatabase.child("users").child(user.getUid()).child("assignments");
         return rootView;
     }
 
@@ -37,16 +53,34 @@ public class HomeFragment extends Fragment {
         super.onActivityCreated(savedInstanceState);
 
 
-        /*recyclerView.setHasFixedSize(true);
+        recyclerView.setHasFixedSize(true);
         // Use a linear layout manager
         LinearLayoutManager mLayoutManager = new LinearLayoutManager(getActivity());
         recyclerView.setLayoutManager(mLayoutManager);
 
+        //TODO: fill in task array goes here
 
-        ArrayList<Tasks> tasks = AssigmentFragment.getArray();
 
-        AdapterTasks adapterProduct = new AdapterTasks(0, getActivity(), tasks);
-        recyclerView.setAdapter(adapterProduct);*/
+        Log.i("COUNT ARRAY LIST0", String.valueOf(tasks.size()));
+
+        mUserTasks.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                //User value = dataSnapshot.getValue(User.class);
+                //message.setText(value.toString());
+                for(DataSnapshot snapshot : dataSnapshot.getChildren()){
+                    Tasks value = snapshot.getValue(Tasks.class);
+                    Log.d("FIREBASE", "Key is: " + snapshot.getKey() + " Value is: " + snapshot.getValue());
+                    tasks.add(value);
+                }
+                Log.i("COUNT ARRAY LIST", String.valueOf(tasks.size()));
+                AdapterTasks adapterProduct = new AdapterTasks(0, getActivity(), tasks);
+                recyclerView.setAdapter(adapterProduct);
+            }
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+            }
+        });
     }
 
     @Override
