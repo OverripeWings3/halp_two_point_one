@@ -38,15 +38,16 @@
             android:layout_marginStart="8dp"
             android:id="@+id/task_class"
             android:text="For class: Class Name"/>
-
-        <ImageView
+        <CheckBox
             android:id="@+id/task_check"
-            android:src="@drawable/ic_check_box_outline_blank"
             android:layout_width="50dp"
             android:layout_height="50dp"
+            android:scaleX="2"
+            android:scaleY="2"
             android:layout_centerVertical="true"
             android:layout_alignParentEnd="true"
-            android:layout_marginEnd="15dp" />
+           />
+
 
     </RelativeLayout>
 

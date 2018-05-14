@@ -3,6 +3,7 @@ package com.iteso.is699367.halp_3;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -10,6 +11,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
@@ -31,33 +33,46 @@ public class AssigmentFragment extends Fragment {
     DatabaseReference mUserTasks;
     FirebaseAuth mAuth;
     ArrayList<Tasks> tasks = new ArrayList<Tasks>();
-    int i = 1;
 
 
     public AssigmentFragment() {
         // Required empty public constructor
     }
 
-
+    FloatingActionButton fab;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View rootView = inflater.inflate(R.layout.fragment_assigments, container, false);
+        fab = rootView.findViewById(R.id.fab);
+
+        if (fab != null) {
+            fab.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    Intent intent = new Intent(getContext(), ActivityAddTask.class);
+
+                    startActivity(intent);
+
+                }
+            });
+        }
+
         recyclerView = rootView.findViewById(R.id.fragment_recycler);
         mAuth = FirebaseAuth.getInstance();
         FirebaseUser user = mAuth.getCurrentUser();
         firebaseDatabase = FirebaseDatabase.getInstance().getReference();
         mUserTasks = firebaseDatabase.child("users").child(user.getUid()).child("assignments");
-        recyclerView.setBackgroundColor(getResources().getColor(R.color.colorBackground, getActivity().getTheme()));
+
         return rootView;
+
     }
 
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
-
         recyclerView.setHasFixedSize(true);
         // Use a linear layout manager
         LinearLayoutManager mLayoutManager = new LinearLayoutManager(getActivity());
@@ -67,7 +82,27 @@ public class AssigmentFragment extends Fragment {
 
 
         Log.i("COUNT ARRAY LIST0", String.valueOf(tasks.size()));
-        do{
+
+        mUserTasks.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                //User value = dataSnapshot.getValue(User.class);
+                //message.setText(value.toString());
+                for(DataSnapshot snapshot : dataSnapshot.getChildren()){
+                    Tasks value = snapshot.getValue(Tasks.class);
+                    Log.d("FIREBASE", "Key is: " + snapshot.getKey() + " Value is: " + snapshot.getValue());
+                    tasks.add(value);
+                }
+                Log.i("COUNT ARRAY LIST", String.valueOf(tasks.size()));
+                AdapterTasks adapterProduct = new AdapterTasks(0, getActivity(), tasks);
+                recyclerView.setAdapter(adapterProduct);
+            }
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+            }
+        });
+
+        /*do{
             DatabaseReference mTempTask = mUserTasks.child(String.valueOf(i));
             Log.i("COUNT ARRAY LIST2", String.valueOf(tasks.size()));
             mTempTask.addValueEventListener(new ValueEventListener() {
@@ -86,6 +121,7 @@ public class AssigmentFragment extends Fragment {
                         Log.i("COUNT ARRAY LIST", String.valueOf(tasks.size()));
                         AdapterTasks adapterProduct = new AdapterTasks(0, getActivity(), tasks);
                         recyclerView.setAdapter(adapterProduct);
+                        numChild = tasks.size();
                     }
                 }
                 @Override
@@ -94,10 +130,11 @@ public class AssigmentFragment extends Fragment {
             });
             i++;
             Log.i("COUNT ARRAY LIST1", String.valueOf(tasks.size()));
-        }while (i < 15);
+        }while (i < 15);*/
 
 
     }
+
 
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {

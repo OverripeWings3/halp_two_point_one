@@ -23,6 +23,7 @@
             android:name=".ActivityMain" />
         <activity android:name=".ActivitySettings" />
         <activity android:name=".ActivityGetInfo"></activity>
+        <activity android:name=".ActivityAddTask"></activity>
     </application>
 
 </manifest>
