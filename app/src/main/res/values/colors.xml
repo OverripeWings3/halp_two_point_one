@@ -8,4 +8,6 @@
     <color name="colorPrimaryDarkI">#00BF00</color>
     <color name="colorAccentI">#73FF5B</color>
 
+    <color name="colorBackground">#FFFFFF</color>
+
 </resources>

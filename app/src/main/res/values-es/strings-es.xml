@@ -11,6 +11,9 @@
     <string name="grade_hint">Escribe el grado en el que estás</string>
     <string name="carrer_hint">Escribe tu carrera (si tienes (Opcional))</string>
     <string name="birth_day_hint">Añade tu cumpleaños (Opcional)</string>
+    <string name="error_message">Este elemento no se puede dejar en blanco.</string>
+    <string name="of">de</string>
+    <string name="done">Listo</string>
 
     <string name="app_name">Halp!</string>
     <string name="navigation_drawer_open">Abrir menú</string>

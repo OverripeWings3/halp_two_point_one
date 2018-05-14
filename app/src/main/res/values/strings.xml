@@ -11,7 +11,9 @@
     <string name="grade_hint">Write the grade you\'re in (Optional)</string>
     <string name="carrer_hint">Write the carreer you\'re in (if any (Optional))</string>
     <string name="birth_day_hint">Add your birthday (Optional)</string>
-
+    <string name="error_message">This field cannot be left blank</string>
+    <string name="of">of</string>
+    <string name="done">Done</string>
 
     <string name="app_name">Halp!</string>
     <string name="navigation_drawer_open">Open navigation drawer</string>

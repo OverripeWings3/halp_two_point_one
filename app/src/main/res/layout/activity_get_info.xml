@@ -50,6 +50,7 @@
             android:textSize="17dp"/>
 
         <DatePicker
+            android:id="@+id/birthday_picker"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@id/birthday_picker_label"
@@ -58,5 +59,11 @@
             android:datePickerMode="spinner">
 
         </DatePicker>
+
+        <Button
+            android:id="@+id/done"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/done"/>
     </RelativeLayout>
 </ScrollView>
