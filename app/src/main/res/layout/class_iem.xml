@@ -22,6 +22,33 @@
             android:textSize="20sp"
             android:textStyle="bold"
             android:id="@+id/class_name"/>
+        <TextView
+            android:id="@+id/class_room"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/class_name"
+            android:text="Class room"
+            android:paddingTop="7dp"/>
+        <TextView
+            android:id="@+id/class_time"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toRightOf="@id/class_room"
+            android:layout_below="@id/class_name"
+            android:text="Class time"
+            android:paddingTop="7dp"
+            android:paddingLeft="7dp"/>
+
+        <TextView
+            android:id="@+id/class_teacher"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toRightOf="@id/class_name"
+            android:layout_above="@id/class_room"
+            android:text="Class teacher"
+            android:layout_centerVertical="true"
+            android:paddingTop="7dp"
+            android:paddingLeft="10dp"/>
 
 
         <ImageView
