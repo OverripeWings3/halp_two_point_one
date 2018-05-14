@@ -33,7 +33,13 @@
     <string name="pref_color_inv">Inverse Colors</string>
     <string name="pref_color_norm">Normal Colors</string>
 
+<<<<<<< HEAD
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+=======
+    <string name="addTaskName">Insert Task Name</string>
+    <string name="addTaskDuedate">Insert Task Duedate:</string>
+    <string name="addTaskClass">Insert Task Class</string>
+>>>>>>> 6e1d5c3ca8214329beeed1b1720646c7a3a0d3fb
 
 </resources>
