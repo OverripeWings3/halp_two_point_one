@@ -13,6 +13,8 @@ import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
+import java.util.Calendar;
+
 public class ActivityGetInfo extends AppCompatActivity {
 
     EditText school;
@@ -21,6 +23,10 @@ public class ActivityGetInfo extends AppCompatActivity {
     DatePicker birthday;
     Button done;
     FirebaseAuth mAuth;
+
+    int day;
+    int month;
+    int year;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,29 +39,35 @@ public class ActivityGetInfo extends AppCompatActivity {
         birthday = findViewById(R.id.birthday_picker);
         done = findViewById(R.id.done);
         mAuth = FirebaseAuth.getInstance();
+        Calendar c = Calendar.getInstance();
+        c.set(2010, 0, 1);
 
-        final String bDay = Integer.toString(birthday.getDayOfMonth()) +
-                getString(R.string.of) + Integer.toString(birthday.getMonth()) +
-                " " + Integer.toString(birthday.getYear());
+        birthday.setMaxDate(c.getTimeInMillis());
 
         done.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
 
-                if(school.getText().equals("")) {
+                String bDay = String.valueOf(birthday.getDayOfMonth()) + "/" +
+                        "/" + String.valueOf(birthday.getMonth() + 1) +
+                        "/" + String.valueOf(birthday.getYear());
+
+                String sch = school.getText().toString();
+
+                if(school.getText().toString().isEmpty()) {
                     school.setError(getString(R.string.error_message));
                 }
                 else {
                     FirebaseUser mUser = mAuth.getCurrentUser();
                     DatabaseReference databaseReference = FirebaseDatabase.getInstance()
                             .getReference().child("users").child(mUser.getUid()).child("school");
-                    databaseReference.setValue(school.getText());
+                    databaseReference.setValue(school.getText().toString());
                     databaseReference = FirebaseDatabase.getInstance()
                             .getReference().child("users").child(mUser.getUid()).child("carreer");
-                    databaseReference.setValue(carreer.getText());
+                    databaseReference.setValue(carreer.getText().toString());
                     databaseReference = FirebaseDatabase.getInstance()
                             .getReference().child("users").child(mUser.getUid()).child("grade");
-                    databaseReference.setValue(grade.getText());
+                    databaseReference.setValue(grade.getText().toString());
                     databaseReference = FirebaseDatabase.getInstance()
                             .getReference().child("users").child(mUser.getUid()).child("birthday");
                     databaseReference.setValue(bDay);
