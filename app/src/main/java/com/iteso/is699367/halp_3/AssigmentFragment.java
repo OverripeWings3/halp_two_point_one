@@ -33,12 +33,6 @@ public class AssigmentFragment extends Fragment {
     DatabaseReference mUserTasks;
     FirebaseAuth mAuth;
     ArrayList<Tasks> tasks = new ArrayList<Tasks>();
-    int i = 1;
-    int numChild =0 ;
-
-    public int getChild(){
-        return numChild;
-    }
 
 
     public AssigmentFragment() {
@@ -85,7 +79,27 @@ public class AssigmentFragment extends Fragment {
 
 
         Log.i("COUNT ARRAY LIST0", String.valueOf(tasks.size()));
-        do{
+
+        mUserTasks.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                //User value = dataSnapshot.getValue(User.class);
+                //message.setText(value.toString());
+                for(DataSnapshot snapshot : dataSnapshot.getChildren()){
+                    Tasks value = snapshot.getValue(Tasks.class);
+                    Log.d("FIREBASE", "Key is: " + snapshot.getKey() + " Value is: " + snapshot.getValue());
+                    tasks.add(value);
+                }
+                Log.i("COUNT ARRAY LIST", String.valueOf(tasks.size()));
+                AdapterTasks adapterProduct = new AdapterTasks(0, getActivity(), tasks);
+                recyclerView.setAdapter(adapterProduct);
+            }
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+            }
+        });
+
+        /*do{
             DatabaseReference mTempTask = mUserTasks.child(String.valueOf(i));
             Log.i("COUNT ARRAY LIST2", String.valueOf(tasks.size()));
             mTempTask.addValueEventListener(new ValueEventListener() {
@@ -113,7 +127,7 @@ public class AssigmentFragment extends Fragment {
             });
             i++;
             Log.i("COUNT ARRAY LIST1", String.valueOf(tasks.size()));
-        }while (i < 15);
+        }while (i < 15);*/
 
 
     }

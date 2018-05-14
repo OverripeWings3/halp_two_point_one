@@ -6,7 +6,7 @@ import android.os.Parcelable;
 public class Tasks implements Parcelable {
     private int id;
     private String name;
-    private String dueDate;
+    private String duedate;
     private String done;
     private String clas;
 
@@ -39,12 +39,12 @@ public class Tasks implements Parcelable {
         this.name = name;
     }
 
-    public String getDueDate() {
-        return dueDate;
+    public String getDuedate() {
+        return duedate;
     }
 
-    public void setDueDate(String dueDate) {
-        this.dueDate = dueDate;
+    public void setDuedate(String duedate) {
+        this.duedate = duedate;
     }
 
     public String getDone() {
@@ -60,9 +60,9 @@ public class Tasks implements Parcelable {
 
     }
 
-    public Tasks(String name, String dueDate, String done, String clas) {
+    public Tasks(String name, String duedate, String done, String clas) {
         this.name = name;
-        this.dueDate = dueDate;
+        this.duedate = duedate;
         this.done = done;
         this.clas = clas;
     }
@@ -76,7 +76,7 @@ public class Tasks implements Parcelable {
     public void writeToParcel(Parcel dest, int flags) {
         dest.writeInt(this.id);
         dest.writeString(this.name);
-        dest.writeString(this.dueDate);
+        dest.writeString(this.duedate);
         dest.writeString(this.done);
         dest.writeString(this.clas);
     }
@@ -84,7 +84,7 @@ public class Tasks implements Parcelable {
     private Tasks(Parcel in) {
         this.id = in.readInt();
         this.name = in.readString();
-        this.dueDate = in.readString();
+        this.duedate = in.readString();
         this.done = in.readString();
         this.clas = in.readString();
     }

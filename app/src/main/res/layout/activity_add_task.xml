@@ -19,14 +19,18 @@
         android:layout_height="wrap_content"
         android:paddingTop="25dp"
         android:hint="@string/addTaskClass"/>
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/addTaskDuedate"
+        android:paddingTop="25dp"/>
     <DatePicker
         android:id="@+id/addTaskDuedate"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:paddingTop="25dp"
         android:calendarViewShown="false"
-        android:datePickerMode="spinner"
-        android:hint="@string/addTaskDuedate"/>
+        android:datePickerMode="spinner" />
 
     <Button
         android:id="@+id/addTaskButton"

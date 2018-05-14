@@ -31,11 +31,6 @@ public class ActivityAddTask extends AppCompatActivity {
         button.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 // Do something in response to button click
-                try {
-                    int red = AssigmentFragment.
-                } catch (Exception e) {
-                    e.printStackTrace();
-                }
 
             }
         });

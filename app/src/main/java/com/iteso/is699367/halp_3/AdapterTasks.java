@@ -1,18 +1,12 @@
 package com.iteso.is699367.halp_3;
 
 import android.content.Context;
-import android.content.Intent;
-import android.graphics.Bitmap;
-import android.graphics.drawable.BitmapDrawable;
-import android.net.Uri;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
-import android.widget.RelativeLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.iteso.is699367.halp_3.beans.Tasks;
 
@@ -53,7 +47,7 @@ public class AdapterTasks extends RecyclerView.Adapter<AdapterTasks.ViewHolder> 
     @Override
     public void onBindViewHolder(final ViewHolder holder, int position) {
         holder.mName.setText(tasks.get(holder.getAdapterPosition()).getName());
-        holder.mDuedate.setText(tasks.get(holder.getAdapterPosition()).getDueDate());
+        holder.mDuedate.setText(tasks.get(holder.getAdapterPosition()).getDuedate());
         holder.mClass.setText(tasks.get(holder.getAdapterPosition()).getClas());
 
     }
