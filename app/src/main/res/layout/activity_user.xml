@@ -12,9 +12,15 @@
         android:id="@+id/UserPic"
         android:layout_width="match_parent"
         android:layout_height="135dp"
-        android:layout_margin="35dp"
+        android:layout_marginTop="35dp"
         android:layout_centerHorizontal="true"
         android:background="@color/colorPrimary"/>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="5dp"
+        android:layout_below="@id/UserPic"
+        android:background="@android:color/white"/>
 
     <TextView
         android:text="Hi, my names is: "
@@ -26,6 +32,12 @@
         android:layout_below="@id/UserPic"
         android:padding="15dp"/>
 
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="5dp"
+        android:layout_below="@id/UserName"
+        android:background="@android:color/white"/>
+
     <TextView
         android:text="AndMyEmailIs@ThisOne.com "
         android:textSize="15dp"
@@ -35,6 +47,12 @@
         android:layout_centerInParent="true"
         android:layout_below="@id/UserName"
         android:padding="15dp"/>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="5dp"
+        android:layout_below="@id/UserEmail"
+        android:background="@android:color/white"/>
 
     <TextView
         android:text="Also, my School is: "
@@ -46,6 +64,12 @@
         android:layout_below="@id/UserEmail"
         android:padding="15dp"/>
 
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="5dp"
+        android:layout_below="@id/UserSchool"
+        android:background="@android:color/white"/>
+
     <TextView
         android:text="I Study thus there "
         android:textSize="15dp"
@@ -55,6 +79,12 @@
         android:layout_centerInParent="true"
         android:layout_below="@id/UserSchool"
         android:padding="15dp"/>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="5dp"
+        android:layout_below="@id/UserCarreer"
+        android:background="@android:color/white"/>
 
     <TextView
         android:text="And the grade Im in"
@@ -66,6 +96,12 @@
         android:layout_below="@id/UserCarreer"
         android:padding="15dp"/>
 
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="5dp"
+        android:layout_below="@id/UserGrade"
+        android:background="@android:color/white"/>
+
     <TextView
         android:text="34/34/34"
         android:textSize="15dp"
@@ -75,5 +111,11 @@
         android:layout_centerInParent="true"
         android:layout_below="@id/UserGrade"
         android:padding="15dp"/>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="5dp"
+        android:layout_below="@id/UserBirthDay"
+        android:background="@android:color/white"/>
 
 </RelativeLayout>
