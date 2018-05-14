@@ -113,7 +113,6 @@ public class ActivityMain extends AppCompatActivity  implements
             case R.id.nav_settings:
                 Intent intent = new Intent(ActivityMain.this, ActivitySettings.class);
                 startActivity(intent);
-                this.setTheme(R.style.AppThemeInverse);
                 break;
         }
 

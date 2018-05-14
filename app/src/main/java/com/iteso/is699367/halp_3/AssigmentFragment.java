@@ -50,6 +50,7 @@ public class AssigmentFragment extends Fragment {
         FirebaseUser user = mAuth.getCurrentUser();
         firebaseDatabase = FirebaseDatabase.getInstance().getReference();
         mUserTasks = firebaseDatabase.child("users").child(user.getUid()).child("assignments");
+        recyclerView.setBackgroundColor(getResources().getColor(R.color.colorBackground, getActivity().getTheme()));
         return rootView;
     }
 

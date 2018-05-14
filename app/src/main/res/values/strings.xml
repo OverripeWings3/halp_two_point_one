@@ -1,4 +1,20 @@
 <resources>
+
+    <string name="message_to_user">
+        Halp! wasn\'t able to sign you in. Are you sure you have an internet connection?
+    </string>
+
+    <string name="disclaimer">
+        This information will not be shared with any entity or person. This information is just for your profile and it will be securely stored.
+    </string>
+    <string name="school_name_hint">Write your school name</string>
+    <string name="grade_hint">Write the grade you\'re in (Optional)</string>
+    <string name="carrer_hint">Write the carreer you\'re in (if any (Optional))</string>
+    <string name="birth_day_hint">Add your birthday (Optional)</string>
+    <string name="error_message">This field cannot be left blank</string>
+    <string name="of"> of </string>
+    <string name="done">Done</string>
+
     <string name="app_name">Halp!</string>
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>

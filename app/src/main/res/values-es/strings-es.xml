@@ -1,4 +1,20 @@
 <resources>
+
+    <string name="message_to_user">
+        Halp! no pudo conectarse a tu cuenta de Google ¿Seguro de que está conectado a Internet?
+    </string>
+
+    <string name="disclaimer">
+        Esta información no se compartirá con ninguna entidad o persona, sólo se utiliará para tu perfil y se mantendrá guardada seguramente.
+    </string>
+    <string name="school_name_hint">Escribe el nombre de tu escuela</string>
+    <string name="grade_hint">Escribe el grado en el que estás</string>
+    <string name="carrer_hint">Escribe tu carrera (si tienes (Opcional))</string>
+    <string name="birth_day_hint">Añade tu cumpleaños (Opcional)</string>
+    <string name="error_message">Este elemento no se puede dejar en blanco.</string>
+    <string name="of">de</string>
+    <string name="done">Listo</string>
+
     <string name="app_name">Halp!</string>
     <string name="navigation_drawer_open">Abrir menú</string>
     <string name="navigation_drawer_close">Cerrar menú</string>

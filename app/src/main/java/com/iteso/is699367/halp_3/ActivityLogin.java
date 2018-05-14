@@ -9,6 +9,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.android.gms.auth.api.Auth;
 import com.google.android.gms.auth.api.signin.GoogleSignIn;
@@ -27,6 +28,11 @@ import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.auth.GoogleAuthProvider;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 import com.iteso.is699367.halp_3.R;
 
 public class ActivityLogin extends AppCompatActivity implements GoogleApiClient.OnConnectionFailedListener{
@@ -35,6 +41,7 @@ public class ActivityLogin extends AppCompatActivity implements GoogleApiClient.
     private final String TAG = "ActivityLogin";
     SignInButton signInButton;
     GoogleApiClient mGoogleApiClient;
+    String userInfo;
 
     private FirebaseAuth mAuth;
 // ...
@@ -72,10 +79,31 @@ public class ActivityLogin extends AppCompatActivity implements GoogleApiClient.
     }
 
     private void updateUI(FirebaseUser user) {
-        if(user != null) {
-            Intent intent = new Intent(ActivityLogin.this, ActivityMain.class);
-            startActivity(intent);
-            finish();
+        if(user!=null) {
+            DatabaseReference firebaseDatabase = FirebaseDatabase.getInstance().getReference();
+            DatabaseReference databaseReference = firebaseDatabase.child("users").child(user.getUid());
+            databaseReference.addValueEventListener(new ValueEventListener() {
+                @Override
+                public void onDataChange(DataSnapshot dataSnapshot) {
+                    String school = dataSnapshot.child("school").getValue(String.class);
+                    userInfo = school;
+                }
+
+                @Override
+                public void onCancelled(DatabaseError databaseError) {
+
+                }
+            });
+            if(userInfo != null) {
+                Intent intent = new Intent(ActivityLogin.this, ActivityMain.class);
+                startActivity(intent);
+                finish();
+            }
+            else {
+                Intent intent = new Intent(ActivityLogin.this, ActivityGetInfo.class);
+                startActivity(intent);
+                finish();
+            }
         }
     }
 
@@ -118,7 +146,9 @@ public class ActivityLogin extends AppCompatActivity implements GoogleApiClient.
                             updateUI(user);
                         } else {
                             // If sign in fails, display a message to the user.
-
+                            Log.d(TAG, "Sign In not a success");
+                            Toast.makeText(getApplicationContext(), getString(R.string.message_to_user)
+                                    , Toast.LENGTH_LONG);
                         }
 
                         // ...
