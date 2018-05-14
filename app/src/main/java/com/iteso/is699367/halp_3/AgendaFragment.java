@@ -48,7 +48,7 @@ public class AgendaFragment extends Fragment {
             fab.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    Intent intent = new Intent(getContext(), ActivityAddTask.class); //change later %$"#%&"#$%#"$%"#$%
+                    Intent intent = new Intent(getContext(), ActivityAddClass.class); //change later %$"#%&"#$%#"$%"#$%
 
                     startActivity(intent);
 

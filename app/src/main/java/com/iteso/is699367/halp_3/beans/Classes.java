@@ -48,6 +48,12 @@ public class Classes implements Parcelable {
     public Classes() {
 
     }
+    public Classes(String name, String room, String teacher, String time) {
+        this.name =name;
+        this.room =room;
+        this.teacher =teacher;
+        this.time =time;
+    }
 
     @Override
     public int describeContents() {
