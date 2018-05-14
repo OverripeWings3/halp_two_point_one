@@ -1,38 +1,21 @@
 package com.iteso.is699367.halp_3;
 
-import android.content.Context;
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.net.Uri;
 import android.os.Bundle;
-import android.preference.PreferenceManager;
 import android.support.annotation.NonNull;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
-import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
-import com.google.android.gms.auth.api.signin.GoogleSignIn;
-import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
-import com.google.android.gms.common.api.GoogleApiClient;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
-import com.google.firebase.database.DatabaseReference;
-import com.iteso.is699367.halp_3.Constants.Constants;
 import com.squareup.picasso.Picasso;
-
-import java.io.IOException;
-import java.io.InputStream;
-import java.net.MalformedURLException;
-import java.net.URI;
-import java.net.URL;
-import com.iteso.is699367.halp_3.Constants.Constants;
-import com.squareup.picasso.*;
 
 public class ActivityMain extends AppCompatActivity  implements
         NavigationView.OnNavigationItemSelectedListener{
@@ -49,12 +32,6 @@ public class ActivityMain extends AppCompatActivity  implements
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        String pref = loadPreferences();
-        if(pref.equals(Constants.KEY_CHANGE_COLOR_INVR)) {
-            setTheme(R.style.AppThemeInverse);
-        }
-        else
-            setTheme(R.style.AppTheme);
         setContentView(R.layout.activity_main);
 
         android.support.v7.widget.Toolbar toolbar = findViewById(R.id.toolbar);
@@ -139,13 +116,5 @@ public class ActivityMain extends AppCompatActivity  implements
             personPhoto = user.getPhotoUrl();
 
         }
-    }
-
-    public String loadPreferences() {
-        SharedPreferences sharedPreferences = getPreferences(MODE_PRIVATE);
-        String colorChange = sharedPreferences.getString(Constants.KEY_CHANGE_COLOR,
-                Constants.KEY_CHANGE_COLOR_NORM);
-        Log.i("COLOR SHIT:::::::::", colorChange);
-        return colorChange;
     }
 }

@@ -32,8 +32,6 @@ import java.util.ArrayList;
 public class SettingsFragment extends PreferenceFragment{
 
     private Preference logOutPref;
-    private Preference invColorPref;
-    private Preference normColorPref;
 
 
     @Override
@@ -41,8 +39,6 @@ public class SettingsFragment extends PreferenceFragment{
         super.onCreate(savedInstanceState);
         addPreferencesFromResource(R.xml.preferences);
         logOutPref = findPreference(Constants.KEY_LOG_OUT);
-        invColorPref = findPreference(Constants.KEY_CHANGE_COLOR_INVR);
-        normColorPref = findPreference(Constants.KEY_CHANGE_COLOR_NORM);
 
         logOutPref.setOnPreferenceClickListener(new Preference.OnPreferenceClickListener() {
             @Override
@@ -51,40 +47,7 @@ public class SettingsFragment extends PreferenceFragment{
                 return false;
             }
         });
-
-        /*invColorPref.setOnPreferenceClickListener(new Preference.OnPreferenceClickListener() {
-            @Override
-            public boolean onPreferenceClick(Preference preference) {
-                SharedPreferences sharedPreferences = getActivity().getPreferences(Context.MODE_PRIVATE);
-                getActivity().getApplication().setTheme(R.style.AppThemeInverse);
-                SharedPreferences.Editor editor = sharedPreferences.edit();
-                editor.putString(Constants.KEY_CHANGE_COLOR, Constants.KEY_CHANGE_COLOR_INVR);
-                editor.clear();
-                editor.commit();
-                Log.i("COLOR INV", "YOU'VE CHANGED COLOR TO INV ********************");
-                Log.i("COLOR INV", sharedPreferences.getString(Constants.KEY_CHANGE_COLOR, null));
-                return false;
-            }
-        });
-
-        normColorPref.setOnPreferenceClickListener(new Preference.OnPreferenceClickListener() {
-            @Override
-            public boolean onPreferenceClick(Preference preference) {
-                SharedPreferences sharedPreferences = getActivity().getPreferences(Context.MODE_PRIVATE);
-                getActivity().getApplication().setTheme(R.style.AppTheme);
-                SharedPreferences.Editor editor = sharedPreferences.edit();
-                editor.putString(Constants.KEY_CHANGE_COLOR, Constants.KEY_CHANGE_COLOR_NORM);
-                editor.clear();
-                editor.commit();
-                Log.i("COLOR NORM", "YOU'VE CHANGED COLOR TO NORM ********************");
-                Log.i("COLOR NORM", sharedPreferences.getString(Constants.KEY_CHANGE_COLOR, null));
-                return false;
-            }
-        });*/
-
     }
-
-
 
     private void signOut() {
         FirebaseAuth mAuth = FirebaseAuth.getInstance();
@@ -93,7 +56,5 @@ public class SettingsFragment extends PreferenceFragment{
         intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
         startActivity(intent);
         getActivity().finish();
-
-
     }
 }

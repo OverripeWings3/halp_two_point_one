@@ -41,7 +41,7 @@ public class ActivityLogin extends AppCompatActivity implements GoogleApiClient.
     private final String TAG = "ActivityLogin";
     SignInButton signInButton;
     GoogleApiClient mGoogleApiClient;
-    String userInfo;
+    String userInfo = "";
 
     private FirebaseAuth mAuth;
 // ...
@@ -78,15 +78,28 @@ public class ActivityLogin extends AppCompatActivity implements GoogleApiClient.
         updateUI(currentUser);
     }
 
-    private void updateUI(FirebaseUser user) {
+    private void updateUI(final FirebaseUser user) {
         if(user!=null) {
             DatabaseReference firebaseDatabase = FirebaseDatabase.getInstance().getReference();
-            DatabaseReference databaseReference = firebaseDatabase.child("users").child(user.getUid());
-            databaseReference.addValueEventListener(new ValueEventListener() {
+            DatabaseReference databaseReference = firebaseDatabase.child("users");
+            DatabaseReference tempDBR = databaseReference.child(user.getUid());
+
+            tempDBR.addValueEventListener(new ValueEventListener() {
                 @Override
                 public void onDataChange(DataSnapshot dataSnapshot) {
                     String school = dataSnapshot.child("school").getValue(String.class);
-                    userInfo = school;
+                    if(school.isEmpty()) {
+                        Log.i("USERSCHOOL2:", "Something's Wrong");
+                        Intent intent = new Intent(ActivityLogin.this, ActivityGetInfo.class);
+                        startActivity(intent);
+                        finish();
+                    }
+                    else {
+                        Log.i("USERSCHOOL2:", userInfo);
+                        Intent intent = new Intent(ActivityLogin.this, ActivityMain.class);
+                        startActivity(intent);
+                        finish();
+                    }
                 }
 
                 @Override
@@ -94,16 +107,6 @@ public class ActivityLogin extends AppCompatActivity implements GoogleApiClient.
 
                 }
             });
-            if(userInfo != null) {
-                Intent intent = new Intent(ActivityLogin.this, ActivityMain.class);
-                startActivity(intent);
-                finish();
-            }
-            else {
-                Intent intent = new Intent(ActivityLogin.this, ActivityGetInfo.class);
-                startActivity(intent);
-                finish();
-            }
         }
     }
 
